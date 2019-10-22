@@ -35,10 +35,12 @@ namespace CarManGUI
         private UpdateStatusDelegate updateStatusDelegate = null;
 
         //lida com a string recebida para converte-la
-        private static String[] sepearator = { "_", ":", "=" };
-        private static String[] strlist = new String[30];
-        private static int strNr = 30, count = 0, valor = 0;
-        private static double valorConvertido = 0.0;
+        private static String[] sepearator = { "_", ":", "=" }; //marcadores para diferenciar as informações vindas do Arduino
+        private static String[] strlist = new String[30]; //strings para receber as partes da msg enviada pelo Arduino
+        private static int strNr = 30, //quantidade de strings para passar a função Split 
+                           count = 0, //indica qual das informações está sendo passada para a função que atualiza a GUI
+                           valor = 0; //variável para guardar o valor convertido da String
+        private static double valorConvertido = 0.0; //variável que guarda o valor que foi convertido do valor bruto do sensor para um valor entendível
 
         public Form1()
         {
