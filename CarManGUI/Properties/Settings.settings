@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CarManGUI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="StandartMargin" Type="System.Windows.Forms.Padding" Scope="User">
+      <Value Profile="(Default)">2, 2, 2, 2</Value>
+    </Setting>
+    <Setting Name="StandartColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">ActiveBorder</Value>
+    </Setting>
+    <Setting Name="DefaultMargin" Type="System.Windows.Forms.Padding" Scope="User">
+      <Value Profile="(Default)">2, 2, 2, 2</Value>
+    </Setting>
+    <Setting Name="DefaultColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkSlateGray</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
