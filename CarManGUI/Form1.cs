@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO.Ports;
+using System.IO;
 
 //using IronPython.Hosting;
 
@@ -17,13 +18,16 @@ namespace CarManGUI
 {
     public partial class Form1 : Form
     {
+        //--- Serial related 
         //inicia processo através da classe no contexto global para poder manter ele rodando e atualizar a janela
         //static ClassSerial serial = new ClassSerial(); //classe com a parte de comunicação serial
         static SerialPort serialPort1 = new SerialPort();
 
-        static string s = "";
+        static string s = ""; //recebe os dados da serial
+        //--- Serial related
 
-        //Thread related
+
+        //--- Thread related
         // Declare our worker thread
         private Thread workerThread = null;
 
@@ -33,7 +37,10 @@ namespace CarManGUI
         // Declare a delegate used to communicate with the UI thread
         private delegate void UpdateStatusDelegate();
         private UpdateStatusDelegate updateStatusDelegate = null;
+        //-- Thread related
 
+
+        //--- Data received related
         //lida com a string recebida para converte-la
         private static String[] sepearator = { "_", ":", "=" }; //marcadores para diferenciar as informações vindas do Arduino
         private static String[] strlist = new String[30]; //strings para receber as partes da msg enviada pelo Arduino
@@ -41,6 +48,13 @@ namespace CarManGUI
                            count = 0, //indica qual das informações está sendo passada para a função que atualiza a GUI
                            valor = 0; //variável para guardar o valor convertido da String
         private static double valorConvertido = 0.0; //variável que guarda o valor que foi convertido do valor bruto do sensor para um valor entendível
+        //--- Data received related
+
+        //--- File related
+        static StreamWriter sw;
+        static bool writeFile = false;
+        static bool rewriteFile = false;
+        //--- File related
 
         public Form1()
         {
@@ -50,7 +64,7 @@ namespace CarManGUI
             rtbSerialOutput.Text = "Iniciado";
 
             // Initialise the delegate
-            this.updateStatusDelegate = new UpdateStatusDelegate(this.UpdateGUI);
+            this.updateStatusDelegate = new UpdateStatusDelegate(this.UpdateGUI_Log);
         }
 
         private void UpdateFields(string pStr)
@@ -270,8 +284,66 @@ namespace CarManGUI
             }
         }
 
-        private void UpdateGUI()
+        private void UpdateFile()
         {
+            if (writeFile)
+            {
+                // Open the file if dont exist or reset the file.
+                if (!File.Exists("./log.txt") || rewriteFile)
+                {
+                    if (rewriteFile)
+                        rewriteFile = false;
+                    // Create a file and write the log.
+                    //StreamWriter 
+                    sw = File.CreateText("./log.txt");
+                    try
+                    {
+                        sw.WriteLine(System.DateTime.Now);
+                        sw.WriteLine(s);
+                    }
+                    finally
+                    {
+                        if (sw != null)
+                            sw.Close();
+                    }
+                }
+                if (File.Exists("./log.txt"))
+                {
+                    // Append the next info to the log file.
+                    //StreamWriter 
+                    sw = File.AppendText("./log.txt");
+                    try
+                    {
+                        sw.WriteLine(System.DateTime.Now);
+                        sw.WriteLine(s);
+                    }
+                    finally
+                    {
+                        if (sw != null)
+                            sw.Close();
+                    }
+                }
+            }
+            else
+            {
+                if (sw != null)
+                    sw.Close();
+            }
+        }
+
+        private void UpdateGUI_Log()
+        {
+            //--- Updating Rec button/File
+            if (writeFile)
+            {
+                tsmiRec.Text = "Rec*";
+                UpdateFile();
+            }
+            else
+                tsmiRec.Text = "Rec ";
+            //--- Updating Rec button/File
+
+            //--- Updating Data fields
             this.rtbSerialOutput.Text = s;
             this.rtbTesteNros.Text = "";
             count = 0;
@@ -332,7 +404,7 @@ namespace CarManGUI
         {
             try
             {
-                //comunicaSerial(0);    
+                
             }
             catch(Exception err)
             {
@@ -351,6 +423,8 @@ namespace CarManGUI
                     serialPort1.Open();
 
                     tsmiStartSerial.Enabled = false;
+                    tsmiRec.Enabled = true;
+                    tsmiResetLog.Enabled = true;
                     //tsmiStopSerial.Enabled = true;
 
                     this.stopProcess = false;

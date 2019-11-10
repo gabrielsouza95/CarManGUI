@@ -168,15 +168,17 @@
             // tsmiRec
             // 
             this.tsmiRec.BackColor = System.Drawing.Color.Cyan;
+            this.tsmiRec.Enabled = false;
             this.tsmiRec.Margin = global::CarManGUI.Properties.Settings.Default.DefaultMargin;
             this.tsmiRec.Name = "tsmiRec";
-            this.tsmiRec.Size = new System.Drawing.Size(38, 19);
-            this.tsmiRec.Text = "Rec";
+            this.tsmiRec.Size = new System.Drawing.Size(41, 19);
+            this.tsmiRec.Text = "Rec ";
             this.tsmiRec.Click += new System.EventHandler(this.tsmiRec_Click);
             // 
             // tsmiResetLog
             // 
             this.tsmiResetLog.BackColor = global::CarManGUI.Properties.Settings.Default.DefaultColor;
+            this.tsmiResetLog.Enabled = false;
             this.tsmiResetLog.Margin = global::CarManGUI.Properties.Settings.Default.DefaultMargin;
             this.tsmiResetLog.Name = "tsmiResetLog";
             this.tsmiResetLog.Size = new System.Drawing.Size(70, 19);
