@@ -183,6 +183,7 @@
             this.tsmiResetLog.Name = "tsmiResetLog";
             this.tsmiResetLog.Size = new System.Drawing.Size(70, 19);
             this.tsmiResetLog.Text = "Reset Log";
+            this.tsmiResetLog.Click += new System.EventHandler(this.tsmiResetLog_Click);
             // 
             // tsmiStartSerial
             // 

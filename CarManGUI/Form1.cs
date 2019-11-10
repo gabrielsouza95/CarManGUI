@@ -340,7 +340,11 @@ namespace CarManGUI
                 UpdateFile();
             }
             else
+            {
                 tsmiRec.Text = "Rec ";
+                if (sw != null)
+                    sw.Close();
+            }
             //--- Updating Rec button/File
 
             //--- Updating Data fields
@@ -404,12 +408,21 @@ namespace CarManGUI
         {
             try
             {
-                
+                if (writeFile == false)
+                    writeFile = true;
+                else
+                    writeFile = false;
             }
             catch(Exception err)
             {
                 Console.Write(err);
             }    
+        }
+
+        private void tsmiResetLog_Click(object sender, EventArgs e)
+        {
+            if (!rewriteFile)
+                rewriteFile = true;
         }
 
         private void tsmiStartSerial_Click(object sender, EventArgs e)
