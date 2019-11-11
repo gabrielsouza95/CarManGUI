@@ -298,7 +298,12 @@ namespace CarManGUI
                     sw = File.CreateText("./log.txt");
                     try
                     {
-                        sw.WriteLine(Convert.ToString(System.DateTime.Now)+" "+s);
+                        string sModified = s;
+                        sModified = new string((from c in sModified
+                                              where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c) || c == ':' || c == '-'
+                                              select c
+                                    ).ToArray());
+                        sw.WriteLine(Convert.ToString(System.DateTime.Now)+" "+sModified);
                         //sw.WriteLine(s);
                     }
                     finally
@@ -314,7 +319,12 @@ namespace CarManGUI
                     sw = File.AppendText("./log.txt");
                     try
                     {
-                        sw.WriteLine(Convert.ToString(System.DateTime.Now) + " " + s);
+                        string sModified = s;
+                        sModified = new string((from c in sModified
+                                                where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c) || c == ':' || c == '-'
+                                                select c
+                                    ).ToArray());
+                        sw.WriteLine(Convert.ToString(System.DateTime.Now) + " " + sModified);
                         //sw.WriteLine(s);
                     }
                     finally
