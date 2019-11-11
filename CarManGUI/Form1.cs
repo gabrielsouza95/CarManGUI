@@ -298,8 +298,8 @@ namespace CarManGUI
                     sw = File.CreateText("./log.txt");
                     try
                     {
-                        sw.WriteLine(System.DateTime.Now);
-                        sw.WriteLine(s);
+                        sw.WriteLine(Convert.ToString(System.DateTime.Now)+" "+s);
+                        //sw.WriteLine(s);
                     }
                     finally
                     {
@@ -314,8 +314,8 @@ namespace CarManGUI
                     sw = File.AppendText("./log.txt");
                     try
                     {
-                        sw.WriteLine(System.DateTime.Now);
-                        sw.WriteLine(s);
+                        sw.WriteLine(Convert.ToString(System.DateTime.Now) + " " + s);
+                        //sw.WriteLine(s);
                     }
                     finally
                     {
