@@ -54,6 +54,7 @@ namespace CarManGUI
         static StreamWriter sw;
         static bool writeFile = false;
         static bool rewriteFile = false;
+        static bool recHasChanged = false;
         //--- File related
 
         public Form1()
@@ -286,58 +287,64 @@ namespace CarManGUI
 
         private void UpdateFile()
         {
-            if (writeFile)
+            try
             {
-                // Open the file if dont exist or reset the file.
-                if (!File.Exists("./log.txt") || rewriteFile)
+                if (writeFile)
                 {
-                    if (rewriteFile)
-                        rewriteFile = false;
-                    // Create a file and write the log.
-                    //StreamWriter 
-                    sw = File.CreateText("./log.txt");
-                    try
+                    // Open the file if dont exist or reset the file.
+                    if (!File.Exists("./log.txt") || rewriteFile)
                     {
-                        string sModified = s;
-                        sModified = new string((from c in sModified
-                                              where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c) || c == ':' || c == '-'
-                                              select c
-                                    ).ToArray());
-                        sw.WriteLine(Convert.ToString(System.DateTime.Now)+" "+sModified);
-                        //sw.WriteLine(s);
+                        if (rewriteFile)
+                            rewriteFile = false;
+                        // Create a file and write the log.
+                        //StreamWriter 
+                        sw = File.CreateText("./log.txt");
+                        try
+                        {
+                            string sModified = s;
+                            sModified = new string((from c in sModified
+                                                    where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c) || c == ':' || c == '-'
+                                                    select c
+                                        ).ToArray());
+                            sw.WriteLine(Convert.ToString(System.DateTime.Now) + " " + sModified);
+                            //sw.WriteLine(s);
+                        }
+                        finally
+                        {
+                            if (sw != null)
+                                sw.Close();
+                        }
                     }
-                    finally
+                    if (File.Exists("./log.txt"))
                     {
-                        if (sw != null)
-                            sw.Close();
+                        // Append the next info to the log file.
+                        //StreamWriter 
+                        sw = File.AppendText("./log.txt");
+                        try
+                        {
+                            string sModified = s;
+                            sModified = new string((from c in sModified
+                                                    where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c) || c == ':' || c == '-'
+                                                    select c
+                                        ).ToArray());
+                            sw.WriteLine(Convert.ToString(System.DateTime.Now) + " " + sModified);
+                            //sw.WriteLine(s);
+                        }
+                        finally
+                        {
+                            if (sw != null)
+                                sw.Close();
+                        }
                     }
                 }
-                if (File.Exists("./log.txt"))
+                else
                 {
-                    // Append the next info to the log file.
-                    //StreamWriter 
-                    sw = File.AppendText("./log.txt");
-                    try
-                    {
-                        string sModified = s;
-                        sModified = new string((from c in sModified
-                                                where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c) || c == ':' || c == '-'
-                                                select c
-                                    ).ToArray());
-                        sw.WriteLine(Convert.ToString(System.DateTime.Now) + " " + sModified);
-                        //sw.WriteLine(s);
-                    }
-                    finally
-                    {
-                        if (sw != null)
-                            sw.Close();
-                    }
+                    if (sw != null)
+                        sw.Close();
                 }
-            }
-            else
+            } catch(System.Exception e)
             {
-                if (sw != null)
-                    sw.Close();
+                Console.Write(e);
             }
         }
 
@@ -346,14 +353,22 @@ namespace CarManGUI
             //--- Updating Rec button/File
             if (writeFile)
             {
-                tsmiRec.Text = "Rec*";
+                if (recHasChanged)
+                {
+                    recHasChanged = false;
+                    tsmiRec.Text = "Rec*";
+                }
                 UpdateFile();
             }
             else
             {
-                tsmiRec.Text = "Rec ";
-                if (sw != null)
-                    sw.Close();
+                if (recHasChanged)
+                {
+                    recHasChanged = false;
+                    tsmiRec.Text = "Rec ";
+                    if (sw != null)
+                        sw.Close();
+                }
             }
             //--- Updating Rec button/File
 
@@ -418,6 +433,7 @@ namespace CarManGUI
         {
             try
             {
+                recHasChanged = true;
                 if (writeFile == false)
                     writeFile = true;
                 else
