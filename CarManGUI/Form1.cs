@@ -51,7 +51,7 @@ namespace CarManGUI
         //--- Data received related
 
         //--- File related
-        static StreamWriter sw;
+        static StreamWriter sw = null;
         static bool writeFile = false;
         static bool rewriteFile = false;
         static bool recHasChanged = false;
@@ -74,215 +74,342 @@ namespace CarManGUI
             {
                 //MPU 6050 1
                 case 0: //gyro x mpu 1
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpGyros"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / 131;//16384.0
-                        this.tbGyrX1.Text = pStr;//valorConvertido.ToString();
+                        tbGyrX1.Text = pStr;//valorConvertido.ToString();
                     }
                     break;
                 case 1: //gyro y mpu 1
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpGyros"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / 131;//16384.0
-                        this.tbGyrY1.Text = pStr;//valorConvertido.ToString();
+                        tbGyrY1.Text = pStr;//valorConvertido.ToString();
                     }
                     break;
                 case 2: //gyro z mpu 1
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpGyros"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / 131;//16384.0
-                        this.tbGyrZ1.Text = pStr;//valorConvertido.ToString();
+                        tbGyrZ1.Text = pStr;//valorConvertido.ToString();
                     }
                     break;
                 case 3: //accel x mpu 1
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpAccels"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / 16384.0;
-                        this.tbAcelX1.Text = pStr;//valorConvertido.ToString();
+                        tbAcelX1.Text = pStr;//valorConvertido.ToString();
                     }
                     break;
                 case 4: //accel y mpu 1
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpAccels"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / 16384.0;
-                        this.tbAcelY1.Text = pStr;//valorConvertido.ToString();
+                        tbAcelY1.Text = pStr;//valorConvertido.ToString();
                     }
                     break;
                 case 5: //accel z mpu 1
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpAccels"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / 16384.0;
-                        this.tbAcelZ1.Text = pStr;//valorConvertido.ToString();
+                        tbAcelZ1.Text = pStr;//valorConvertido.ToString();
                     }
                     break;
                 //MPU 6050 2
                 case 6: //gyro x mpu 2
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpGyros"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        this.tbGyrX2.Text = pStr;
+                        tbGyrX2.Text = pStr;
                     }
                     break;
                 case 7: //gyro y mpu 2
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpGyros"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        this.tbGyrY2.Text = pStr;
+                        tbGyrY2.Text = pStr;
                     }
                     break;
                 case 8: //gyro z mpu 2
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpGyros"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        this.tbGyrZ2.Text = pStr;
+                        tbGyrZ2.Text = pStr;
                     }
                     break;
                 case 9: //accel x mpu 2
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpAccels"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
-                        this.tbAcelX2.Text = pStr;
+                        tbAcelX2.Text = pStr;
                     }
                     break;
                 case 10: //accel y mpu 2
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpAccels"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
-                        this.tbAcelY2.Text = pStr;
+                        tbAcelY2.Text = pStr;
                     }
                     break;
                 case 11: //accel z mpu 2
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpAccels"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
-                        this.tbAcelZ2.Text = pStr;
+                        tbAcelZ2.Text = pStr;
                     }
                     break;
                 //MPU 6050 3
                 case 12: //gyro x mpu 3
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpGyros"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        this.tbGyrX3.Text = pStr;
+                        tbGyrX3.Text = pStr;
                     }
                     break;
                 case 13: //gyro y mpu 3
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpGyros"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        this.tbGyrY3.Text = pStr;
+                        tbGyrY3.Text = pStr;
                     }
                     break;
                 case 14: //gyro z mpu 3
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpGyros"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        this.tbGyrZ3.Text = pStr;
+                        tbGyrZ3.Text = pStr;
                     }
                     break;
                 case 15: //accel x mpu 3
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpAccels"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
-                        this.tbAcelX3.Text = pStr;
+                        tbAcelX3.Text = pStr;
                     }
                     break;
                 case 16: //accel y mpu 3
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpAccels"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
-                        this.tbAcelY3.Text = pStr;
+                        tbAcelY3.Text = pStr;
                     }
                     break;
                 case 17: //accel z mpu 3
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpAccels"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
-                        this.tbAcelZ3.Text = pStr;
+                        tbAcelZ3.Text = pStr;
                     }
                     break;
                 //MLX 90614 (all temp disc)
                 case 18: //mlx 1 FR
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpTempDiscs"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpTempDiscs"])
                     {
-                        this.tbTempDiscFR.Text = pStr + " Kelvin";
-                        this.tkbTempDiscFR.Value = Int32.Parse(pStr);
+                        tbTempDiscFR.Text = pStr + " Kelvin";
+                        tkbTempDiscFR.Value = Int32.Parse(pStr);
                     }
                     break;
                 case 19: //mlx 2 FL
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpTempDiscs"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpTempDiscs"])
                     {
-                        this.tbTempDiscFL.Text = pStr + " Kelvin";
-                        this.tkbTempDiscFL.Value = Int32.Parse(pStr);
+                        tbTempDiscFL.Text = pStr + " Kelvin";
+                        tkbTempDiscFL.Value = Int32.Parse(pStr);
                     }
                     break;
                 case 20: //mlx 3 RR
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpTempDiscs"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpTempDiscs"])
                     {
-                        this.tbTempDiscRR.Text = pStr + " Kelvin";
-                        this.tkbTempDiscRR.Value = Int32.Parse(pStr);
+                        tbTempDiscRR.Text = pStr + " Kelvin";
+                        tkbTempDiscRR.Value = Int32.Parse(pStr);
                     }
                     break;
                 case 21: //mlx 4 RL
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpTempDiscs"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpTempDiscs"])
                     {
-                        this.tbTempDiscRL.Text = pStr + " Kelvin";
-                        this.tkbTempDiscRL.Value = Int32.Parse(pStr);
+                        tbTempDiscRL.Text = pStr + " Kelvin";
+                        tkbTempDiscRL.Value = Int32.Parse(pStr);
                     }
                     break;
                 //potenciometros suspensão(todos)
                 case 22: //potenciometro FR
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpSuspPosition"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpSuspPosition"])
                     {
-                        this.tbSuspFR.Text = pStr;
-                        this.pbSuspFR.Value = Int32.Parse(pStr);
+                        tbSuspFR.Text = pStr;
+                        pbSuspFR.Value = Int32.Parse(pStr);
                     }
                     break;
                 case 23: //potenciometro FL
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpSuspPosition"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpSuspPosition"])
                     {
-                        this.tbSuspFL.Text = pStr;
-                        this.pbSuspFL.Value = Int32.Parse(pStr);
+                        tbSuspFL.Text = pStr;
+                        pbSuspFL.Value = Int32.Parse(pStr);
                     }
                     break;
                 case 24: //potenciometro RR
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpSuspPosition"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpSuspPosition"])
                     {
-                        this.tbSuspRR.Text = pStr;
-                        this.pbSuspRR.Value = Int32.Parse(pStr);
+                        tbSuspRR.Text = pStr;
+                        pbSuspRR.Value = Int32.Parse(pStr);
                     }
                     break;
                 case 25: //potenciometro RL
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpSuspPosition"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpSuspPosition"])
                     {
-                        this.tbSuspRL.Text = pStr;
-                        this.pbSuspRL.Value = Int32.Parse(pStr);
+                        tbSuspRL.Text = pStr;
+                        pbSuspRL.Value = Int32.Parse(pStr);
                     }
                     break;
                 //ky003 all vel rodas
                 case 26: //vel roda FR
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpVelRodas"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpVelRodas"])
                     {
-                        this.tbVelRodaFR.Text = pStr;
-                        this.pbVelRodaFR.Value = Int32.Parse(pStr);
+                        tbVelRodaFR.Text = pStr;
+                        pbVelRodaFR.Value = Int32.Parse(pStr);
                     }
                     break;
                 case 27: //vel roda FL
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpVelRodas"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpVelRodas"])
                     {
-                        this.tbVelRodaFL.Text = pStr;
-                        this.pbVelRodaFL.Value = Int32.Parse(pStr);
+                        tbVelRodaFL.Text = pStr;
+                        pbVelRodaFL.Value = Int32.Parse(pStr);
                     }
                     break;
                 case 28: //vel roda RR
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpVelRodas"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpVelRodas"])
                     {
-                        this.tbVelRodaRR.Text = pStr;
-                        this.pbVelRodaRR.Value = Int32.Parse(pStr);
+                        tbVelRodaRR.Text = pStr;
+                        pbVelRodaRR.Value = Int32.Parse(pStr);
                     }
                     break;
                 case 29: //vel roda RL
-                    if (this.tcTelas.SelectedTab == this.tcTelas.TabPages["tpVelRodas"])
+                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpVelRodas"])
                     {
-                        this.tbVelRodaRL.Text = pStr;
-                        this.pbVelRodaRL.Value = Int32.Parse(pStr);
+                        tbVelRodaRL.Text = pStr;
+                        pbVelRodaRL.Value = Int32.Parse(pStr);
                     }
                     break;
             }
+        }
+
+        private void Convert_Log()
+        {
+            string line;
+            int countLine = 0;
+            try
+            {
+                // Read the file line. 
+                StreamReader file = new StreamReader("./log.txt");
+                while ((line = file.ReadLine()) != null)
+                {
+                    // Open the file if dont exist or reset the file.
+                    if (!File.Exists("./log_converted.txt"))
+                    {
+                        // Create a file and write the log.
+                        //StreamWriter 
+                        sw = File.CreateText("./log_converted.txt");
+                    }
+                    if (File.Exists("./log_converted.txt"))
+                    {
+                        // Append the next info to the log file.
+                        //StreamWriter 
+                        sw = File.AppendText("./log_converted.txt");
+                    }
+
+                    string sModified = line.Substring(20);
+
+                    strlist = sModified.Split(sepearator, strNr,
+                    StringSplitOptions.RemoveEmptyEntries);
+                    
+                    double valorLog, valorConvertidoLog = 0.0;
+
+                    foreach (String str in strlist)
+                    {
+                        try
+                        {
+                            switch (countLine) //lê na ordem que é mandada pelo programa no arduino
+                            {
+                                //MPU 6050 1
+                                case 0: //gyro mpu 1
+                                case 1:
+                                case 2:
+                                case 6: //gyro mpu 2
+                                case 7:
+                                case 8:
+                                case 12: //gyro mpu 3
+                                case 13:
+                                case 14:
+                                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
+                                    {
+                                        valorLog = Int32.Parse(str);
+                                        valorConvertidoLog = valorLog / 131;//16384.0
+                                        sModified = valorConvertidoLog.ToString();//valorConvertido.ToString();
+                                        sModified += " gyro mpu";
+                                    }
+                                    break;
+                                case 3: //accel mpu 1
+                                case 4:
+                                case 5:
+                                case 9: //accel mpu 2
+                                case 10:
+                                case 11:
+                                case 15: //accel mpu 3
+                                case 16:
+                                case 17:
+                                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
+                                    {
+                                        valorLog = Int32.Parse(str);
+                                        valorConvertidoLog = valorLog / 16384.0;
+                                        sModified = valorConvertidoLog.ToString();//valorConvertido.ToString();
+                                        sModified += " accel mpu";
+                                    }
+                                    break;
+                                //MLX 90614 (all temp disc)
+                                case 18: //mlx 1 FR
+                                case 19:
+                                case 20:
+                                case 21:
+                                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpTempDiscs"])
+                                    {
+                                        sModified = "mlx";
+                                    }
+                                    break;
+                                //potenciometros suspensão(todos)
+                                case 22: //potenciometro FR
+                                case 23:
+                                case 24:
+                                case 25:
+                                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpSuspPosition"])
+                                    {
+                                        sModified = "potenciometro";
+                                    }
+                                    break;
+                                //ky003 all vel rodas
+                                case 26: //vel roda FR
+                                case 27:
+                                case 28:
+                                case 29:
+                                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpVelRodas"])
+                                    {
+                                        sModified = "ky003";
+                                    }
+                                    break;
+                            }
+                            sw.WriteLine(sModified);
+                            //sw.WriteLine(s);
+                        }
+                        finally
+                        {
+                            if (sw != null)
+                                sw.Close();
+                        }
+
+                       countLine++;
+                    }
+
+
+                }
+
+                file.Close();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            
         }
 
         private void UpdateFile()
@@ -347,7 +474,7 @@ namespace CarManGUI
                 Console.Write(e);
             }
         }
-
+        
         private void UpdateGUI_Log()
         {
             //--- Updating Rec button/File
@@ -373,8 +500,8 @@ namespace CarManGUI
             //--- Updating Rec button/File
 
             //--- Updating Data fields
-            this.rtbSerialOutput.Text = s;
-            this.rtbTesteNros.Text = "";
+            rtbSerialOutput.Text = s;
+            rtbTesteNros.Text = "";
             count = 0;
 
             // using the method 
@@ -383,11 +510,11 @@ namespace CarManGUI
 
             foreach (String str in strlist)
             {
-                this.rtbTesteNros.Text += count.ToString();
-                this.rtbTesteNros.Text += " - ";
-                this.rtbTesteNros.Text += str;
-                this.rtbTesteNros.Text += "\n";
-                this.UpdateFields(str);
+                rtbTesteNros.Text += count.ToString();
+                rtbTesteNros.Text += " - ";
+                rtbTesteNros.Text += str;
+                rtbTesteNros.Text += "\n";
+                UpdateFields(str);
                 count++;
             }
         }
@@ -449,6 +576,11 @@ namespace CarManGUI
         {
             if (!rewriteFile)
                 rewriteFile = true;
+        }
+
+        private void tsmiConvertLog_Click(object sender, EventArgs e)
+        {
+            Convert_Log();
         }
 
         private void tsmiStartSerial_Click(object sender, EventArgs e)

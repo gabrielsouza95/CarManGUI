@@ -123,6 +123,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbVelRodaFR = new System.Windows.Forms.TextBox();
             this.pbVelRodaFR = new System.Windows.Forms.ProgressBar();
+            this.tsmiConvertLog = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tcTelas.SuspendLayout();
@@ -157,7 +158,8 @@
             this.tsmiRec,
             this.tsmiResetLog,
             this.tsmiStartSerial,
-            this.tsmiStopSerial});
+            this.tsmiStopSerial,
+            this.tsmiConvertLog});
             this.menuStrip1.Location = new System.Drawing.Point(3, 249);
             this.menuStrip1.Margin = global::CarManGUI.Properties.Settings.Default.DefaultMargin;
             this.menuStrip1.Name = "menuStrip1";
@@ -1116,6 +1118,13 @@
             this.pbVelRodaFR.Step = 1;
             this.pbVelRodaFR.TabIndex = 0;
             // 
+            // tsmiConvertLog
+            // 
+            this.tsmiConvertLog.Name = "tsmiConvertLog";
+            this.tsmiConvertLog.Size = new System.Drawing.Size(84, 23);
+            this.tsmiConvertLog.Text = "Convert Log";
+            this.tsmiConvertLog.Click += new System.EventHandler(this.tsmiConvertLog_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1249,6 +1258,7 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox tbSuspFR;
         private System.Windows.Forms.ProgressBar pbSuspFR;
+        private System.Windows.Forms.ToolStripMenuItem tsmiConvertLog;
     }
 }
 
