@@ -23,13 +23,13 @@ namespace CarManGUI
         //static ClassSerial serial = new ClassSerial(); //classe com a parte de comunicação serial
         static SerialPort serialPort1 = new SerialPort();
 
-        static string s = ""; //recebe os dados da serial
+        static string s = "" ; //recebe os dados da serial
         //--- Serial related
 
 
         //--- Thread related
         // Declare our worker thread
-        private Thread workerThread = null;
+        //private Thread workerThread = null;
 
         // Boolean flag used to stop the 
         private bool stopProcess = false;
@@ -37,6 +37,7 @@ namespace CarManGUI
         // Declare a delegate used to communicate with the UI thread
         private delegate void UpdateStatusDelegate();
         private UpdateStatusDelegate updateStatusDelegate = null;
+        private event EventHandler NewSensorDataReceived;
         //-- Thread related
 
 
@@ -519,7 +520,7 @@ namespace CarManGUI
             }
         }
 
-        private void comunicaSerial()
+        /*private void comunicaSerial()
         {
             //--- rodando script c++
             //pOp é a opção escolhida para poder parar ou não o processo
@@ -547,6 +548,17 @@ namespace CarManGUI
             catch (System.Exception e)
             {
                 Console.Write(e);
+            }
+        }*/
+
+        private void arduinoBoard_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            this.Invoke(this.updateStatusDelegate);
+            s = serialPort1.ReadLine();
+
+            if (NewSensorDataReceived != null)//If there is someone waiting for this event to be fired
+            {
+                NewSensorDataReceived(this, new EventArgs()); //Fire the event, indicating that new WeatherData was added to the list.
             }
         }
 
@@ -587,22 +599,29 @@ namespace CarManGUI
         {
             try
             {
-                if (cbSerialPorts.Text != "")
+                if (cbSerialPorts.Text != "" )
                 {
-                    serialPort1.PortName = cbSerialPorts.Text;
-                    serialPort1.BaudRate = 115200;
-                    serialPort1.Open();
+                    if (!serialPort1.IsOpen)
+                    {
+                        serialPort1.DataReceived += arduinoBoard_DataReceived;
+                        serialPort1.PortName = cbSerialPorts.Text;
+                        serialPort1.BaudRate = 9600;
+                        serialPort1.Open();
+                    }
 
                     tsmiStartSerial.Enabled = false;
                     tsmiRec.Enabled = true;
                     tsmiResetLog.Enabled = true;
-                    //tsmiStopSerial.Enabled = true;
+                    tsmiStopSerial.Enabled = true;
 
                     this.stopProcess = false;
 
+                    //manda info para arduino começar a mandar info
+                    serialPort1.Write("1#");
+
                     // Initialise and start worker thread
-                    this.workerThread = new Thread(new ThreadStart(this.comunicaSerial));
-                    this.workerThread.Start();
+                    //this.workerThread = new Thread(new ThreadStart(this.comunicaSerial));
+                    //this.workerThread.Start();
                 }
             } catch (UnauthorizedAccessException)
             {
@@ -615,7 +634,9 @@ namespace CarManGUI
             tsmiStopSerial.Enabled = false;
             tsmiStartSerial.Enabled = true;
             this.stopProcess = true;
-            serialPort1.Close();
+
+            serialPort1.Write("0#");
+            //serialPort1.Close();
         }
 
         //Criar um botão para começar a gravar o Log e para parar de gravar, colocar algum sinal visual

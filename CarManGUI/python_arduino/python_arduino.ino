@@ -26,12 +26,31 @@
 
 // ## CAN related ------------------------------------------------------
 
+// ##
+#define LED_PIN 13                      //Pin number on which the LED is connected
+#define LED_TURN_ON_TIMEOUT  1000       //Timeout for LED power time (defines how long the LED stays powered on) in milliseconds
+#define SERIAL_BAUDRATE 9600            //Baud-Rate of the serial Port // 115200
+// ##
+
+// ## Serial status ---------------------------------------------------
+
+int didConect = 0; //keeps the value if the connection was made
+ /*   WARNING, ERROR AND STATUS CODES                              */
+//STATUS
+#define MSG_METHOD_SUCCESS 0                      //Code which is used when an operation terminated  successfully
+//WARNINGS
+#define WRG_NO_SERIAL_DATA_AVAILABLE 250          //Code indicates that no new data is available at the serial input buffer
+//ERRORS
+#define ERR_SERIAL_IN_COMMAND_NOT_TERMINATED -1   //Code is used when a serial input commands' last char is not a '#' 
+
+// ## Serial status ---------------------------------------------------
+
 // ## MPU-6050 (Giroscópio/Acelerômetro) -------------------------------
 
 //Endereco I2C do MPU6050
 const int MPU1 = 0x68;  //MPU com AD0 no GND ou sem nada
 const int MPU2 = 0x68;  //MPU com AD0 no GND ou sem nada
-const int MPU3 = 0x69;  //MPU com AD0 no 5V
+const int MPU3 = 0x68;  //MPU com AD0 no 5V
 
 //MPU6050 mpu; //variável MPU da biblioteca MPU
 //Variaveis para armazenar os valores dos sensores
@@ -67,12 +86,13 @@ int MultiplexPinA = 22, MultiplexPinB = 23;
 
 void setup() 
 {// put your setup code here, to run once:
-  
-  //Serial.begin(9600);
-  Serial.begin(115200);
+  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(SERIAL_BAUDRATE);
+
   // ## Multiplexador
   pinMode(MultiplexPinA, OUTPUT);
   pinMode(MultiplexPinB, OUTPUT);
+
   // ## Multiplexador
 
 // ## CAN DATA SETUP -------------------------------------------------------------------------------------------
@@ -109,7 +129,7 @@ void setup()
   Wire.begin(); 
   initializeMPU(1,MPU1);
   //initializeMPU(2,MPU2);
-  //initializeMPU(3,MPU3);
+  initializeMPU(3,MPU3);
 //ver 1.1 - ==
 //ver 1.0 - utilizando a biblioteca do sensor (mpu)  
 //  mpu.initialize(); // utilizando a biblioteca MPU
@@ -120,10 +140,10 @@ void setup()
 // ## MPU 6050 (Giroscópio/Acelerômetro) ------------------------------------------ 
 
 // ## MLX 90614 (Temperatura) ------------------------------------------ 
-  initializeMLX(1);
-  initializeMLX(2);
-  initializeMLX(3);
-  initializeMLX(4);
+//  initializeMLX(1);
+//  initializeMLX(2);
+//  initializeMLX(3);
+//  initializeMLX(4);
 // ## MLX 90614 (Temperatura) ------------------------------------------ 
 }
 
@@ -206,7 +226,7 @@ void getTempValue(int pMultiplex, int16_t *pTemp)
   Wire.endTransmission(); //talvez colocar false para não dar problema com o MLX
 }
 
-void getSuspPosicValue(int16_t *pPosic, int pAnalogPin)
+void getAnalogValue(int16_t *pPosic, int pAnalogPin)
 {
   *pPosic = analogRead(pAnalogPin);
 }
@@ -269,128 +289,56 @@ void initializeMLX(int pMultiplex)
   Wire.endTransmission(false);  
 }
 
-// ---------------------------
-// -----\Funções criadas -----
-// ---------------------------
-
-void loop() 
-{
-// ## CAN Stuff --------------------------------------------------------------------
-
-  // //------ receiving CAN data and seding data through
-  // //data = analogRead(CANInput); depois colocar aqui por onde o arduino
-  // //                             receberá os dados do conversor CAN
-  // if(!digitalRead(CAN0_INT))                         // If CAN0_INT pin is low, read receive buffer
-  // {
-  //   CAN0.readMsgBuf(&rxId, &len, rxBuf);      // Read data: len = data length, buf = data byte(s)
-    
-  //   if((rxId & 0x80000000) == 0x80000000)     // Determine if ID is standard (11 bits) or extended (29 bits)
-  //     sprintf(msgString, "Extended ID: 0x%.8lX  DLC: %1d  Data:", (rxId & 0x1FFFFFFF), len);
-  //   else
-  //     sprintf(msgString, "Standard ID: 0x%.3lX       DLC: %1d  Data:", rxId, len);
+// 1.4
+int readSerialInputCommand(String *command){
   
-  //   Serial.print(msgString);
-  
-  //   if((rxId & 0x40000000) == 0x40000000){    // Determine if message is a remote request frame.
-  //     sprintf(msgString, " REMOTE REQUEST FRAME");
-  //     Serial.print(msgString);
-  //   } 
-  //   else {
-  //     for(byte i = 0; i<len; i++){
-  //       sprintf(msgString, " 0x%.2X", rxBuf[i]);
-  //       Serial.print(msgString);
-  //     }
-  //   }
-    
-  //   delay(1000);
-  //   Serial.flush();
-  // }
+  int operationStatus = MSG_METHOD_SUCCESS;//Default return is MSG_METHOD_SUCCESS reading data from com buffer.
 
-// ## CAN Stuff --------------------------------------------------------------------
+  //check if serial data is available for reading
+  if (Serial.available()) {
+     char serialInByte;//temporary variable to hold the last serial input buffer character
 
-// ## MPU 6050 ( Giroscópio/Acelerômetro) ----------------------------------------------
-  
-//  Wire.beginTransmission(MPU);  
-//  Wire.write(0x3B); // starting with register 0x3B (ACCEL_XOUT_H)  
-//  Wire.endTransmission(false);    
-//  
-//  Wire.requestFrom(MPU, 14, true); //Solicita os dados do sensor     
-//  
-//  //Armazena o valor dos sensores nas variaveis correspondentes  
-//  AcX = Wire.read()<<8|Wire.read(); //0x3B (ACCEL_XOUT_H) & 0x3C (ACCEL_XOUT_L)       
-//  AcY = Wire.read()<<8|Wire.read(); //0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)  
-//  AcZ = Wire.read()<<8|Wire.read(); //0x3F (ACCEL_ZOUT_H) & 0x40 (ACCEL_ZOUT_L)  
-//  Tmp = Wire.read()<<8|Wire.read(); //0x41 (TEMP_OUT_H) & 0x42 (TEMP_OUT_L)  
-  
-  //Mostra os valores na serial 
-  //mpu.getMotion6(&AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ); 
-  //getAccelValues();
-  //Serial.print("Acel. X = ");
-//  AX = AcX/16384.0; 
-  //Serial.print(AX);  
-  //Serial.print(" | Y = "); 
-//  AY = AcY/16384.0;
-  //Serial.print(AY);  
-  //Serial.print(" | Z = "); 
-//  AZ = AcZ/16384.0;
-  //Serial.print(AZ);  
+     do{//Read serial input buffer data byte by byte 
+       serialInByte = Serial.read();
+       *command = *command + serialInByte;//Add last read serial input buffer byte to *command pointer
+     }while(serialInByte != '#' && Serial.available());//until '#' comes up or no serial data is available anymore
+     
 
-  //gyro
-  //getGyroValues();
-  //Serial.print(" | Gir. X = "); 
-//  GX = GyX/131.0; //calculca velocidade angular
-  //Serial.print(GX);  
-  //Serial.print(" | Y = "); 
-//  GY = GyY/131.0; //calculca velocidade angular
-  //Serial.print(GY);  
-  //Serial.print(" | Z = "); 
-//  GZ = GyZ/131.0; //calcula velocidade angular
-  //Serial.print(GZ);  
-  //Serial.print("\n");
-//  char sAX[10]; 
-//  sAX = dtostrf(10.1,10,2,sAX);
-//  char sAY[10]; 
-//  dtostrf(AY,10,2,sAY);
-//  char sAZ[10]; 
-//  dtostrf(AZ,10,2,sAZ);
-//  char sGX[10]; 
-//  dtostrf(GX,10,2,sGX);
-//  char sGY[10];
-//  dtostrf(GY,10,2,sGY);
-//  char sGZ[10];
-//  dtostrf(GZ,10,2,sGZ);
-//  char serial[100];
-  //sprintf(serial,"%s %s %s %s %s %s \n",sAX,sAY,sAZ,sGX,sGY,sGZ);
-//  Serial.print(sAX);
-//  x_acc= (AcX - (-74))*(2);
-//  Serial.print("x_acc= "); Serial.print(x_acc);
-//  Serial.print("\t\t");
+     if(serialInByte != '#') {
+       operationStatus = ERR_SERIAL_IN_COMMAND_NOT_TERMINATED;
+     }
+  }
+  else{//If not serial input buffer data is AVAILABLE, operationStatus becomes WRG_NO_SERIAL_DATA_AVAILABLE (= No data in the serial input buffer AVAILABLE)
+    operationStatus = WRG_NO_SERIAL_DATA_AVAILABLE;
+  }
   
-//  gyro= (GyY - (-181))*(500);
-//  Serial.print("gyro= "); 
-//  Serial.print(gyro);
-    
-//ver 1.2 - printando todas as entradas dos sensores como inteiros na serial para fazer a conversão no Raspberry
+  return operationStatus;
+}
+
+void readSensorsData(){
   //ver 1.3 - agrupando a atualização de valores antes de começar a mandar pela serial
   getAccelValues    (1,MPU1, &AcX1, &AcY1, &AcZ1);
   getGyroValues     (1,MPU1, &GyX1, &GyY1, &GyZ1);
   //getAccelValues    (2,MPU2, &AcX2, &AcY2, &AcZ2);
   //getGyroValues     (2,MPU2, &GyX2, &GyY2, &GyZ2);
-  //getAccelValues    (3,MPU3, &AcX3, &AcY3, &AcZ3);
-  //getGyroValues     (3,MPU3, &GyX3, &GyY3, &GyZ3);
+  getAccelValues    (3,MPU3, &AcX3, &AcY3, &AcZ3);
+  getGyroValues     (3,MPU3, &GyX3, &GyY3, &GyZ3);
   //getTempValue      (1,&Temp1);
   //getTempValue      (2,&Temp2);
   //getTempValue      (3,&Temp3);
   //getTempValue      (4,&Temp4);
-  //getSuspPosicValue (&Posic1,AnalogPin1);
-  //getSuspPosicValue (&Posic2,AnalogPin2);
-  //getSuspPosicValue (&Posic3,AnalogPin3);
-  //getSuspPosicValue (&Posic4,AnalogPin4);
+  //getAnalogValue (&Posic1,AnalogPin1); //gets suspension 1 posicion value
+  //getAnalogValue (&Posic2,AnalogPin2); //gets suspension 2 posicion value
+  //getAnalogValue (&Posic3,AnalogPin3); //gets suspension 3 posicion value
+  //getAnalogValue (&Posic4,AnalogPin4); //gets suspension 4 posicion value
   //getVelRodaValue   (&VelR1);
   //getVelRodaValue   (&VelR2);
   //getVelRodaValue   (&VelR3);
   //getVelRodaValue   (&VelR4);
-    
+}
+
+void sendSensorsData(){
+  //ver 1.2 - printando todas as entradas dos sensores como inteiros na serial para fazer a conversão no Raspberry
   Serial.print("_");
   //MPU 1
   Serial.print(GyX1);//1
@@ -464,10 +412,146 @@ void loop()
   Serial.print(VelR4);//30
 
   Serial.print("\n");
-//ver 1.2 - ==
-  //Aguarda 300 ms e reinicia o processo  
-  delay(300);
+}
 
-// ## MPU 6050 ( Giroscópio/Acelerômetro) ----------------------------------------------
+// ---------------------------
+// -----\Funções criadas -----
+// ---------------------------
+
+void loop() 
+{
+  
+// ## CAN Stuff --------------------------------------------------------------------
+
+  // //------ receiving CAN data and seding data through
+  // //data = analogRead(CANInput); depois colocar aqui por onde o arduino
+  // //                             receberá os dados do conversor CAN
+  // if(!digitalRead(CAN0_INT))                         // If CAN0_INT pin is low, read receive buffer
+  // {
+  //   CAN0.readMsgBuf(&rxId, &len, rxBuf);      // Read data: len = data length, buf = data byte(s)
+    
+  //   if((rxId & 0x80000000) == 0x80000000)     // Determine if ID is standard (11 bits) or extended (29 bits)
+  //     sprintf(msgString, "Extended ID: 0x%.8lX  DLC: %1d  Data:", (rxId & 0x1FFFFFFF), len);
+  //   else
+  //     sprintf(msgString, "Standard ID: 0x%.3lX       DLC: %1d  Data:", rxId, len);
+  
+  //   Serial.print(msgString);
+  
+  //   if((rxId & 0x40000000) == 0x40000000){    // Determine if message is a remote request frame.
+  //     sprintf(msgString, " REMOTE REQUEST FRAME");
+  //     Serial.print(msgString);
+  //   } 
+  //   else {
+  //     for(byte i = 0; i<len; i++){
+  //       sprintf(msgString, " 0x%.2X", rxBuf[i]);
+  //       Serial.print(msgString);
+  //     }
+  //   }
+    
+  //   delay(1000);
+  //   Serial.flush();
+  // }
+
+// ## CAN Stuff --------------------------------------------------------------------
+
+// ## Sensores ---------------------------------------------------------------------
+  
+//  Wire.beginTransmission(MPU);  
+//  Wire.write(0x3B); // starting with register 0x3B (ACCEL_XOUT_H)  
+//  Wire.endTransmission(false);    
+//  
+//  Wire.requestFrom(MPU, 14, true); //Solicita os dados do sensor     
+//  
+//  //Armazena o valor dos sensores nas variaveis correspondentes  
+//  AcX = Wire.read()<<8|Wire.read(); //0x3B (ACCEL_XOUT_H) & 0x3C (ACCEL_XOUT_L)       
+//  AcY = Wire.read()<<8|Wire.read(); //0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)  
+//  AcZ = Wire.read()<<8|Wire.read(); //0x3F (ACCEL_ZOUT_H) & 0x40 (ACCEL_ZOUT_L)  
+//  Tmp = Wire.read()<<8|Wire.read(); //0x41 (TEMP_OUT_H) & 0x42 (TEMP_OUT_L)  
+  
+  //Mostra os valores na serial 
+  //mpu.getMotion6(&AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ); 
+  //getAccelValues();
+  //Serial.print("Acel. X = ");
+//  AX = AcX/16384.0; 
+  //Serial.print(AX);  
+  //Serial.print(" | Y = "); 
+//  AY = AcY/16384.0;
+  //Serial.print(AY);  
+  //Serial.print(" | Z = "); 
+//  AZ = AcZ/16384.0;
+  //Serial.print(AZ);  
+
+  //gyro
+  //getGyroValues();
+  //Serial.print(" | Gir. X = "); 
+//  GX = GyX/131.0; //calculca velocidade angular
+  //Serial.print(GX);  
+  //Serial.print(" | Y = "); 
+//  GY = GyY/131.0; //calculca velocidade angular
+  //Serial.print(GY);  
+  //Serial.print(" | Z = "); 
+//  GZ = GyZ/131.0; //calcula velocidade angular
+  //Serial.print(GZ);  
+  //Serial.print("\n");
+//  char sAX[10]; 
+//  sAX = dtostrf(10.1,10,2,sAX);
+//  char sAY[10]; 
+//  dtostrf(AY,10,2,sAY);
+//  char sAZ[10]; 
+//  dtostrf(AZ,10,2,sAZ);
+//  char sGX[10]; 
+//  dtostrf(GX,10,2,sGX);
+//  char sGY[10];
+//  dtostrf(GY,10,2,sGY);
+//  char sGZ[10];
+//  dtostrf(GZ,10,2,sGZ);
+//  char serial[100];
+  //sprintf(serial,"%s %s %s %s %s %s \n",sAX,sAY,sAZ,sGX,sGY,sGZ);
+//  Serial.print(sAX);
+//  x_acc= (AcX - (-74))*(2);
+//  Serial.print("x_acc= "); Serial.print(x_acc);
+//  Serial.print("\t\t");
+  
+//  gyro= (GyY - (-181))*(500);
+//  Serial.print("gyro= "); 
+//  Serial.print(gyro);
+String command = "";  //Used to store the latest received command
+int serialResult = 0; //return value for reading operation method on serial in put buffer
+
+serialResult = readSerialInputCommand(&command);
+if(serialResult == MSG_METHOD_SUCCESS){
+  if(command == "1#"){//Request for sending data via Serial Interface
+      didConect = 1;
+      readSensorsData();
+      sendSensorsData();
+      //ver 1.2 - ==
+      //Aguarda 300 ms e reinicia o processo  
+      delay(300);
+  }
+  if(command == "0#")
+    didConect = 0;
+}
+
+if(serialResult == WRG_NO_SERIAL_DATA_AVAILABLE && didConect == 1){//If there is no data AVAILABLE at the serial port, let the LED blink
+   readSensorsData();
+   sendSensorsData();
+   //ver 1.2 - ==
+   //Aguarda 300 ms e reinicia o processo  
+   delay(300);
+}
+else{
+  if(serialResult == WRG_NO_SERIAL_DATA_AVAILABLE && didConect != 1){//If there is no data AVAILABLE at the serial port, let the LED blink
+   digitalWrite(LED_PIN, HIGH);
+   delay(LED_TURN_ON_TIMEOUT);
+   digitalWrite(LED_PIN, LOW);
+   delay(LED_TURN_ON_TIMEOUT);
+  }
+  if(serialResult == ERR_SERIAL_IN_COMMAND_NOT_TERMINATED){//If the command format was invalid, the led is turned off for two seconds
+    digitalWrite(LED_PIN, LOW);
+    delay(300);
+  }
+}
+
+// ## Sensores ---------------------------------------------------------------------
 
 }
