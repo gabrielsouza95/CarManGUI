@@ -27,18 +27,13 @@ namespace CarManGUI
         //--- Serial related
 
 
-        //--- Thread related
-        // Declare our worker thread
-        //private Thread workerThread = null;
+        //--- Serial Event Thread related
 
-        // Boolean flag used to stop the 
-        private bool stopProcess = false;
-
-        // Declare a delegate used to communicate with the UI thread
+        // Declare a delegate used to communicate with the UI thread from the Serial Event
         private delegate void UpdateStatusDelegate();
         private UpdateStatusDelegate updateStatusDelegate = null;
         private event EventHandler NewSensorDataReceived;
-        //-- Thread related
+        //-- Serial Event Thread related
 
 
         //--- Data received related
@@ -71,6 +66,8 @@ namespace CarManGUI
 
         private void UpdateFields(string pStr)
         {
+            double convertAccel = 16384.0;
+            int    convertGyro  = 131;
             switch (count) //lê na ordem que é mandada pelo programa no arduino
             {
                 //MPU 6050 1
@@ -78,121 +75,145 @@ namespace CarManGUI
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
                         valor = Int32.Parse(pStr);
-                        valorConvertido = valor / 131;//16384.0
-                        tbGyrX1.Text = pStr;//valorConvertido.ToString();
+                        valorConvertido = valor / convertAccel;
+                        tbGyrX1.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 1: //gyro y mpu 1
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
                         valor = Int32.Parse(pStr);
-                        valorConvertido = valor / 131;//16384.0
-                        tbGyrY1.Text = pStr;//valorConvertido.ToString();
+                        valorConvertido = valor / convertAccel;
+                        tbGyrY1.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 2: //gyro z mpu 1
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
                         valor = Int32.Parse(pStr);
-                        valorConvertido = valor / 131;//16384.0
-                        tbGyrZ1.Text = pStr;//valorConvertido.ToString();
+                        valorConvertido = valor / convertAccel;
+                        tbGyrZ1.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 3: //accel x mpu 1
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
                         valor = Int32.Parse(pStr);
-                        valorConvertido = valor / 16384.0;
-                        tbAcelX1.Text = pStr;//valorConvertido.ToString();
+                        valorConvertido = valor / convertGyro;
+                        tbAcelX1.Text = valorConvertido.ToString();
                     }
                     break;
                 case 4: //accel y mpu 1
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
                         valor = Int32.Parse(pStr);
-                        valorConvertido = valor / 16384.0;
-                        tbAcelY1.Text = pStr;//valorConvertido.ToString();
+                        valorConvertido = valor / convertGyro;
+                        tbAcelY1.Text = valorConvertido.ToString();
                     }
                     break;
                 case 5: //accel z mpu 1
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
                         valor = Int32.Parse(pStr);
-                        valorConvertido = valor / 16384.0;
-                        tbAcelZ1.Text = pStr;//valorConvertido.ToString();
+                        valorConvertido = valor / convertGyro;
+                        tbAcelZ1.Text = valorConvertido.ToString();
                     }
                     break;
                 //MPU 6050 2
                 case 6: //gyro x mpu 2
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        tbGyrX2.Text = pStr;
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertAccel;
+                        tbGyrX2.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 7: //gyro y mpu 2
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        tbGyrY2.Text = pStr;
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertAccel;
+                        tbGyrY2.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 8: //gyro z mpu 2
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        tbGyrZ2.Text = pStr;
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertAccel;
+                        tbGyrZ2.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 9: //accel x mpu 2
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
-                        tbAcelX2.Text = pStr;
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertGyro;
+                        tbAcelX2.Text = valorConvertido.ToString();
                     }
                     break;
                 case 10: //accel y mpu 2
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
-                        tbAcelY2.Text = pStr;
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertGyro;
+                        tbAcelY2.Text = valorConvertido.ToString();
                     }
                     break;
                 case 11: //accel z mpu 2
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
-                        tbAcelZ2.Text = pStr;
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertGyro;
+                        tbAcelZ2.Text = valorConvertido.ToString();
                     }
                     break;
                 //MPU 6050 3
                 case 12: //gyro x mpu 3
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        tbGyrX3.Text = pStr;
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertAccel;
+                        tbGyrX3.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 13: //gyro y mpu 3
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        tbGyrY3.Text = pStr;
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertAccel;
+                        tbGyrY3.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 14: //gyro z mpu 3
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
                     {
-                        tbGyrZ3.Text = pStr;
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertAccel;
+                        tbGyrZ3.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 15: //accel x mpu 3
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertGyro;
                         tbAcelX3.Text = pStr;
                     }
                     break;
                 case 16: //accel y mpu 3
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertGyro;
                         tbAcelY3.Text = pStr;
                     }
                     break;
                 case 17: //accel z mpu 3
                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
                     {
+                        valor = Int32.Parse(pStr);
+                        valorConvertido = valor / convertGyro;
                         tbAcelZ3.Text = pStr;
                     }
                     break;
@@ -520,37 +541,6 @@ namespace CarManGUI
             }
         }
 
-        /*private void comunicaSerial()
-        {
-            //--- rodando script c++
-            //pOp é a opção escolhida para poder parar ou não o processo
-            //serial.ComunicaSerial();
-            //tbVelRoda1.Text = serial.leSerial;
-            //--- fim rodando script c++
-            try
-            {
-                for (;;)
-                {
-                    // Check if Stop button was clicked
-                    if (!this.stopProcess)
-                    {
-                        // Show progress
-                        this.Invoke(this.updateStatusDelegate);
-                        s = serialPort1.ReadLine();
-                    }
-                    else
-                    {
-                        // Stop thread
-                        this.workerThread.Abort();
-                    }
-                }
-            }
-            catch (System.Exception e)
-            {
-                Console.Write(e);
-            }
-        }*/
-
         private void arduinoBoard_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             this.Invoke(this.updateStatusDelegate);
@@ -614,14 +604,9 @@ namespace CarManGUI
                     tsmiResetLog.Enabled = true;
                     tsmiStopSerial.Enabled = true;
 
-                    this.stopProcess = false;
-
                     //manda info para arduino começar a mandar info
                     serialPort1.Write("1#");
 
-                    // Initialise and start worker thread
-                    //this.workerThread = new Thread(new ThreadStart(this.comunicaSerial));
-                    //this.workerThread.Start();
                 }
             } catch (UnauthorizedAccessException)
             {
@@ -633,10 +618,14 @@ namespace CarManGUI
         {
             tsmiStopSerial.Enabled = false;
             tsmiStartSerial.Enabled = true;
-            this.stopProcess = true;
-
+            if (!serialPort1.IsOpen)
+            {
+                serialPort1.DataReceived += arduinoBoard_DataReceived;
+                serialPort1.PortName = cbSerialPorts.Text;
+                serialPort1.BaudRate = 9600;
+                serialPort1.Open();
+            }
             serialPort1.Write("0#");
-            //serialPort1.Close();
         }
 
         //Criar um botão para começar a gravar o Log e para parar de gravar, colocar algum sinal visual
