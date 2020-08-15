@@ -28,6 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 40D);
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 10D);
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 20D);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -35,6 +43,7 @@
             this.tsmiResetLog = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiStartSerial = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiStopSerial = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiConvertLog = new System.Windows.Forms.ToolStripMenuItem();
             this.tcTelas = new System.Windows.Forms.TabControl();
             this.tpConfig = new System.Windows.Forms.TabPage();
             this.rtbTesteNros = new System.Windows.Forms.RichTextBox();
@@ -123,7 +132,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbVelRodaFR = new System.Windows.Forms.TextBox();
             this.pbVelRodaFR = new System.Windows.Forms.ProgressBar();
-            this.tsmiConvertLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tcTelas.SuspendLayout();
@@ -137,6 +146,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tkbTempDiscFR)).BeginInit();
             this.tpSuspPosition.SuspendLayout();
             this.tpVelRodas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -205,6 +215,13 @@
             this.tsmiStopSerial.Text = "Stop Read";
             this.tsmiStopSerial.Click += new System.EventHandler(this.tsmiStopSerial_Click);
             // 
+            // tsmiConvertLog
+            // 
+            this.tsmiConvertLog.Name = "tsmiConvertLog";
+            this.tsmiConvertLog.Size = new System.Drawing.Size(84, 23);
+            this.tsmiConvertLog.Text = "Convert Log";
+            this.tsmiConvertLog.Click += new System.EventHandler(this.tsmiConvertLog_Click);
+            // 
             // tcTelas
             // 
             this.tcTelas.Controls.Add(this.tpConfig);
@@ -254,6 +271,7 @@
             // 
             this.rtbSerialOutput.Location = new System.Drawing.Point(64, 43);
             this.rtbSerialOutput.Name = "rtbSerialOutput";
+            this.rtbSerialOutput.RightMargin = 250;
             this.rtbSerialOutput.Size = new System.Drawing.Size(293, 43);
             this.rtbSerialOutput.TabIndex = 2;
             this.rtbSerialOutput.Text = "";
@@ -279,6 +297,7 @@
             // tpGyros
             // 
             this.tpGyros.BackColor = System.Drawing.Color.Transparent;
+            this.tpGyros.Controls.Add(this.chart1);
             this.tpGyros.Controls.Add(this.groupBox3);
             this.tpGyros.Controls.Add(this.groupBox2);
             this.tpGyros.Controls.Add(this.label17);
@@ -1118,12 +1137,44 @@
             this.pbVelRodaFR.Step = 1;
             this.pbVelRodaFR.TabIndex = 0;
             // 
-            // tsmiConvertLog
+            // chart1
             // 
-            this.tsmiConvertLog.Name = "tsmiConvertLog";
-            this.tsmiConvertLog.Size = new System.Drawing.Size(84, 23);
-            this.tsmiConvertLog.Text = "Convert Log";
-            this.tsmiConvertLog.Click += new System.EventHandler(this.tsmiConvertLog_Click);
+            chartArea1.AxisX.Interval = 5000D;
+            chartArea1.AxisY.Interval = 5000D;
+            chartArea1.BackColor = System.Drawing.Color.DarkGray;
+            chartArea1.BackImageTransparentColor = System.Drawing.Color.Transparent;
+            chartArea1.BackSecondaryColor = System.Drawing.Color.Black;
+            chartArea1.Name = "Gyro";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.BackColor = System.Drawing.Color.Silver;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(4, 3);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "Gyro";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.Name = "MPU1";
+            dataPoint1.Color = System.Drawing.Color.Red;
+            series1.Points.Add(dataPoint1);
+            series2.ChartArea = "Gyro";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.Name = "MPU2";
+            dataPoint2.Color = System.Drawing.Color.Lime;
+            series2.Points.Add(dataPoint2);
+            series3.ChartArea = "Gyro";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Legend = "Legend1";
+            series3.Name = "MPU3";
+            dataPoint3.Color = System.Drawing.Color.Yellow;
+            series3.Points.Add(dataPoint3);
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
+            this.chart1.Size = new System.Drawing.Size(353, 191);
+            this.chart1.TabIndex = 23;
+            this.chart1.Text = "chart1";
             // 
             // Form1
             // 
@@ -1158,6 +1209,7 @@
             this.tpSuspPosition.PerformLayout();
             this.tpVelRodas.ResumeLayout(false);
             this.tpVelRodas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1259,6 +1311,7 @@
         private System.Windows.Forms.TextBox tbSuspFR;
         private System.Windows.Forms.ProgressBar pbSuspFR;
         private System.Windows.Forms.ToolStripMenuItem tsmiConvertLog;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 

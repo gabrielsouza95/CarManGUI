@@ -8,17 +8,17 @@
 
 // //const int CANoutput = 21,
 // //int data;
-// int time = 0;
-// int i = 20;
+ int time = 0;
+ int i = 20;
 
 // //CAN receive related variables -------------------------------
-// long unsigned int rxId;
-// unsigned char len = 0;
-// unsigned char rxBuf[8];
-// char msgString[128];                        // Array to store serial string
+ long unsigned int rxId;
+ unsigned char len = 0;
+ unsigned char rxBuf[8];
+ char msgString[128];                        // Array to store serial string
 
 // //CAN send related variables ----------------------------------
-// byte data[8] = {0x00, 0x02, 0x09, 0x03, 0x04, 0x05, 0x06, 0x07};
+ byte data[8] = {0x00, 0x02, 0x09, 0x03, 0x04, 0x05, 0x06, 0x07};
 
 // //CAN related setup ------------------------------------------
 // #define CAN0_INT 2                              // Set INT to pin 2
@@ -96,17 +96,17 @@ void setup()
   // ## Multiplexador
 
 // ## CAN DATA SETUP -------------------------------------------------------------------------------------------
-
-  // // Initialize MCP2515 running at 16MHz with a baudrate of 500kb/s and the masks and filters disabled.
-  // if(CAN0.begin(MCP_ANY, CAN_500KBPS, MCP_8MHZ) == CAN_OK) //MCP_16MHZ
-  //   Serial.println("MCP2515 Initialized Successfully!");
-  // else
-  //   Serial.println("Error Initializing MCP2515...");
+/*
+   // Initialize MCP2515 running at 16MHz with a baudrate of 500kb/s and the masks and filters disabled.
+   if(CAN0.begin(MCP_ANY, CAN_125KBPS, MCP_8MHZ) == CAN_OK) //MCP_16MHZ
+     Serial.println("MCP2515 Initialized Successfully!");
+   else
+     Serial.println("Error Initializing MCP2515...");
   
-  // CAN0.setMode(MCP_NORMAL);                     // Set operation mode to normal so the MCP2515 sends acks to received data.
+   CAN0.setMode(MCP_NORMAL);                     // Set operation mode to normal so the MCP2515 sends acks to received data.
 
-  // pinMode(CAN0_INT, INPUT);                            // Configuring pin for /INT input
-  
+   pinMode(CAN0_INT, INPUT);                            // Configuring pin for /INT input
+ */ 
   // Serial.println("MCP2515 Library Receive Example...");
 
   // //------ sending CAN data
@@ -233,6 +233,7 @@ void getAnalogValue(int16_t *pPosic, int pAnalogPin)
 
 void initializeMPU(int pMultiplex, int pMPU)
 {
+  //Serial.print("Iniciando MPU");
   if(pMultiplex == 1 || pMultiplex == 2) // se for um dos dois MPUs ligados juntos no primeiro grupo do multiplexador
   {
     digitalWrite(MultiplexPinA, LOW);
@@ -423,35 +424,35 @@ void loop()
   
 // ## CAN Stuff --------------------------------------------------------------------
 
-  // //------ receiving CAN data and seding data through
-  // //data = analogRead(CANInput); depois colocar aqui por onde o arduino
-  // //                             receberá os dados do conversor CAN
-  // if(!digitalRead(CAN0_INT))                         // If CAN0_INT pin is low, read receive buffer
-  // {
-  //   CAN0.readMsgBuf(&rxId, &len, rxBuf);      // Read data: len = data length, buf = data byte(s)
+   //------ receiving CAN data and seding data through
+   //data = analogRead(CANInput); depois colocar aqui por onde o arduino
+   //                             receberá os dados do conversor CAN
+/*   if(!digitalRead(CAN0_INT))                         // If CAN0_INT pin is low, read receive buffer
+   {
+     CAN0.readMsgBuf(&rxId, &len, rxBuf);      // Read data: len = data length, buf = data byte(s)
     
-  //   if((rxId & 0x80000000) == 0x80000000)     // Determine if ID is standard (11 bits) or extended (29 bits)
-  //     sprintf(msgString, "Extended ID: 0x%.8lX  DLC: %1d  Data:", (rxId & 0x1FFFFFFF), len);
-  //   else
-  //     sprintf(msgString, "Standard ID: 0x%.3lX       DLC: %1d  Data:", rxId, len);
+     if((rxId & 0x80000000) == 0x80000000)     // Determine if ID is standard (11 bits) or extended (29 bits)
+       sprintf(msgString, "Extended ID: 0x%.8lX  DLC: %1d  Data:", (rxId & 0x1FFFFFFF), len);
+     else
+       sprintf(msgString, "Standard ID: 0x%.3lX       DLC: %1d  Data:", rxId, len);
   
-  //   Serial.print(msgString);
+     Serial.print(msgString);
   
-  //   if((rxId & 0x40000000) == 0x40000000){    // Determine if message is a remote request frame.
-  //     sprintf(msgString, " REMOTE REQUEST FRAME");
-  //     Serial.print(msgString);
-  //   } 
-  //   else {
-  //     for(byte i = 0; i<len; i++){
-  //       sprintf(msgString, " 0x%.2X", rxBuf[i]);
-  //       Serial.print(msgString);
-  //     }
-  //   }
+     if((rxId & 0x40000000) == 0x40000000){    // Determine if message is a remote request frame.
+       sprintf(msgString, " REMOTE REQUEST FRAME");
+       Serial.print(msgString);
+     } 
+     else {
+       for(byte i = 0; i<len; i++){
+         sprintf(msgString, " 0x%.2X", rxBuf[i]);
+         Serial.print(msgString);
+       }
+     }
     
-  //   delay(1000);
-  //   Serial.flush();
-  // }
-
+     delay(100);
+     Serial.flush();
+   }
+*/
 // ## CAN Stuff --------------------------------------------------------------------
 
 // ## Sensores ---------------------------------------------------------------------
@@ -515,42 +516,46 @@ void loop()
 //  gyro= (GyY - (-181))*(500);
 //  Serial.print("gyro= "); 
 //  Serial.print(gyro);
-String command = "";  //Used to store the latest received command
-int serialResult = 0; //return value for reading operation method on serial in put buffer
+/*  readSensorsData();
+  sendSensorsData(); */
+  String command = "";  //Used to store the latest received command
+  int serialResult = 0; //return value for reading operation method on serial in put buffer
 
-serialResult = readSerialInputCommand(&command);
-if(serialResult == MSG_METHOD_SUCCESS){
-  if(command == "1#"){//Request for sending data via Serial Interface
-      didConect = 1;
-      readSensorsData();
-      sendSensorsData();
-      //ver 1.2 - ==
-      //Aguarda 300 ms e reinicia o processo  
+  //Serial.print("Iniciado");
+  
+  serialResult = readSerialInputCommand(&command);
+  if(serialResult == MSG_METHOD_SUCCESS){
+    if(command == "1#"){//Request for sending data via Serial Interface
+        didConect = 1;
+        readSensorsData();
+        sendSensorsData();
+        //ver 1.2 - ==
+        //Aguarda 300 ms e reinicia o processo  
+        delay(300);
+    }
+    if(command == "0#")
+      didConect = 0;
+  }
+
+  if(serialResult == WRG_NO_SERIAL_DATA_AVAILABLE && didConect == 1){//){//If there is no data AVAILABLE at the serial port, let the LED blink
+     readSensorsData();
+     sendSensorsData();
+     //ver 1.2 - ==
+     //Aguarda 300 ms e reinicia o processo  
+     delay(300);
+  }
+  else{
+    if((serialResult == WRG_NO_SERIAL_DATA_AVAILABLE) && didConect != 1){//If there is no data AVAILABLE at the serial port, let the LED blink
+     digitalWrite(LED_PIN, HIGH);
+     delay(LED_TURN_ON_TIMEOUT);
+     digitalWrite(LED_PIN, LOW);
+     delay(LED_TURN_ON_TIMEOUT);
+    }
+    if(serialResult == ERR_SERIAL_IN_COMMAND_NOT_TERMINATED){//If the command format was invalid, the led is turned off for two seconds
+      digitalWrite(LED_PIN, LOW);
       delay(300);
+    }
   }
-  if(command == "0#")
-    didConect = 0;
-}
-
-if(serialResult == WRG_NO_SERIAL_DATA_AVAILABLE && didConect == 1){//If there is no data AVAILABLE at the serial port, let the LED blink
-   readSensorsData();
-   sendSensorsData();
-   //ver 1.2 - ==
-   //Aguarda 300 ms e reinicia o processo  
-   delay(300);
-}
-else{
-  if(serialResult == WRG_NO_SERIAL_DATA_AVAILABLE && didConect != 1){//If there is no data AVAILABLE at the serial port, let the LED blink
-   digitalWrite(LED_PIN, HIGH);
-   delay(LED_TURN_ON_TIMEOUT);
-   digitalWrite(LED_PIN, LOW);
-   delay(LED_TURN_ON_TIMEOUT);
-  }
-  if(serialResult == ERR_SERIAL_IN_COMMAND_NOT_TERMINATED){//If the command format was invalid, the led is turned off for two seconds
-    digitalWrite(LED_PIN, LOW);
-    delay(300);
-  }
-}
 
 // ## Sensores ---------------------------------------------------------------------
 

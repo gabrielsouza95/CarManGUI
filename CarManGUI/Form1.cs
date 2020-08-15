@@ -44,7 +44,27 @@ namespace CarManGUI
                            count = 0, //indica qual das informações está sendo passada para a função que atualiza a GUI
                            valor = 0; //variável para guardar o valor convertido da String
         private static double valorConvertido = 0.0; //variável que guarda o valor que foi convertido do valor bruto do sensor para um valor entendível
-        //--- Data received related
+                                                     //--- Data received related
+
+        //--- Gyro data related
+        /*-- Gyro persistence*/
+        private static double mpu1x = 0.0,
+                              mpu1y = 0.0,
+                              mpu1z = 0.0,
+
+                              mpu2x = 0.0,
+                              mpu2y = 0.0,
+                              mpu2z = 0.0,
+
+                              mpu3x = 0.0,
+                              mpu3y = 0.0,
+                              mpu3z = 0.0; 
+        //--- Gyro data related
+
+        //--- Data conversion related
+        double convertAccel = 16384.0;
+        int    convertGyro = 131;
+        //--- Data conversion related
 
         //--- File related
         static StreamWriter sw = null;
@@ -59,16 +79,14 @@ namespace CarManGUI
             pegaNomesPortasSerial();
             tsmiStopSerial.Enabled = false;
             rtbSerialOutput.Text = "Iniciado";
-
+            chart1.BeginInit();
             // Initialise the delegate
             this.updateStatusDelegate = new UpdateStatusDelegate(this.UpdateGUI_Log);
         }
 
         private void UpdateFields(string pStr)
         {
-            double convertAccel = 16384.0;
-            int    convertGyro  = 131;
-            switch (count) //lê na ordem que é mandada pelo programa no arduino
+             switch (count) //lê na ordem que é mandada pelo programa no arduino
             {
                 //MPU 6050 1
                 case 0: //gyro x mpu 1
@@ -76,7 +94,8 @@ namespace CarManGUI
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / convertAccel;
-                        tbGyrX1.Text = valorConvertido.ToString("F");
+                        mpu1x = valor;
+                        chart1.Series["MPU1"].Points.AddXY(mpu1x, mpu1y);//tbGyrX1.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 1: //gyro y mpu 1
@@ -84,7 +103,8 @@ namespace CarManGUI
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / convertAccel;
-                        tbGyrY1.Text = valorConvertido.ToString("F");
+                        mpu1y = valor;
+                        chart1.Series["MPU1"].Points.AddXY(mpu1x, mpu1y);//tbGyrY1.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 2: //gyro z mpu 1
@@ -125,7 +145,8 @@ namespace CarManGUI
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / convertAccel;
-                        tbGyrX2.Text = valorConvertido.ToString("F");
+                        mpu2x = valor;
+                        chart1.Series["MPU2"].Points.AddXY(mpu2x, mpu2y);// tbGyrX2.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 7: //gyro y mpu 2
@@ -133,7 +154,8 @@ namespace CarManGUI
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / convertAccel;
-                        tbGyrY2.Text = valorConvertido.ToString("F");
+                        mpu2y = valor;
+                        chart1.Series["MPU2"].Points.AddXY(mpu2x, mpu2y);//tbGyrY2.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 8: //gyro z mpu 2
@@ -174,7 +196,8 @@ namespace CarManGUI
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / convertAccel;
-                        tbGyrX3.Text = valorConvertido.ToString("F");
+                        mpu3x = valor;
+                        chart1.Series["MPU3"].Points.AddXY(mpu3x, mpu3y);//tbGyrX3.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 13: //gyro y mpu 3
@@ -182,7 +205,8 @@ namespace CarManGUI
                     {
                         valor = Int32.Parse(pStr);
                         valorConvertido = valor / convertAccel;
-                        tbGyrY3.Text = valorConvertido.ToString("F");
+                        mpu3y = valor;
+                        chart1.Series["MPU3"].Points.AddXY(mpu3x, mpu3y);//tbGyrY3.Text = valorConvertido.ToString("F");
                     }
                     break;
                 case 14: //gyro z mpu 3
@@ -537,7 +561,15 @@ namespace CarManGUI
                 rtbTesteNros.Text += str;
                 rtbTesteNros.Text += "\n";
                 UpdateFields(str);
+                
                 count++;
+            }
+            if (chart1.Series["MPU1"].Points.Count == 4|| chart1.Series["MPU2"].Points.Count == 4|| chart1.Series["MPU3"].Points.Count == 4)
+            {
+                foreach (var series in chart1.Series)
+                {
+                    series.Points.Count();
+                }
             }
         }
 
