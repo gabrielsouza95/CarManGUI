@@ -70,8 +70,9 @@ int16_t Temp1 = 180, Temp2 = 200, Temp3 = 120, Temp4 = 150;
 
 // ## Potenciometros da suspensão
 //variáveis para armazenar os valores dos sensores
-int16_t Posic1 = 2, Posic2 = 52, Posic3 = 5, Posic4 = 43;
-int AnalogPin1 = A12, AnalogPin2 = A13, AnalogPin3 = A14, AnalogPin4 = A15;
+int16_t Posic1 = 2, Posic2 = 52, Posic3 = 5, Posic4 = 43, BrakePress = 10;
+//&, 
+int AnalogPin5 = A11, AnalogPin1 = A12, AnalogPin2 = A13, AnalogPin3 = A14, AnalogPin4 = A15;
 //## Potenciometros da suspensão
 
 // ## KY003(velocidade das rodas)
@@ -332,6 +333,7 @@ void readSensorsData(){
   //getAnalogValue (&Posic2,AnalogPin2); //gets suspension 2 posicion value
   //getAnalogValue (&Posic3,AnalogPin3); //gets suspension 3 posicion value
   //getAnalogValue (&Posic4,AnalogPin4); //gets suspension 4 posicion value
+  //getAnalogValue (&BrakePress, AnalogPin5); //gets brake line pressure 
   //getVelRodaValue   (&VelR1);
   //getVelRodaValue   (&VelR2);
   //getVelRodaValue   (&VelR3);

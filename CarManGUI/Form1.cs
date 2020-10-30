@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using System.Windows.Forms;
-using System.Diagnostics;
 using System.IO.Ports;
 using System.IO;
-
-//using IronPython.Hosting;
 
 namespace CarManGUI
 {
@@ -41,30 +32,43 @@ namespace CarManGUI
         private static String[] sepearator = { "_", ":", "=" }; //marcadores para diferenciar as informações vindas do Arduino
         private static String[] strlist = new String[30]; //strings para receber as partes da msg enviada pelo Arduino
         private static int strNr = 30, //quantidade de strings para passar a função Split 
-                           count = 0, //indica qual das informações está sendo passada para a função que atualiza a GUI
-                           valor = 0; //variável para guardar o valor convertido da String
-        private static double valorConvertido = 0.0; //variável que guarda o valor que foi convertido do valor bruto do sensor para um valor entendível
-                                                     //--- Data received related
+                           count = 0;//, //indica qual das informações está sendo passada para a função que atualiza a GUI
+                           //valor = 0; //variável para guardar o valor convertido da String
+        //private static double valorConvertido = 0.0; //variável que guarda o valor que foi convertido do valor bruto do sensor para um valor entendível
+        //--- valores MPU
+        private long[] mpuax = { 0, 0, 0 },
+                       mpuay = { 0, 0, 0 },
+                       mpuaz = { 0, 0, 0 },
+                       mpugx = { 0, 0, 0 },
+                       mpugy = { 0, 0, 0 },
+                       mpugz = { 0, 0, 0 };
+        private static short MPU1 = 0,
+                             MPU2 = 1,
+                             MPU3 = 2;
 
-        //--- Gyro data related
-        /*-- Gyro persistence*/
-        private static double mpu1x = 0.0,
-                              mpu1y = 0.0,
-                              mpu1z = 0.0,
-
-                              mpu2x = 0.0,
-                              mpu2y = 0.0,
-                              mpu2z = 0.0,
-
-                              mpu3x = 0.0,
-                              mpu3y = 0.0,
-                              mpu3z = 0.0; 
-        //--- Gyro data related
-
-        //--- Data conversion related
-        double convertAccel = 16384.0;
-        int    convertGyro = 131;
-        //--- Data conversion related
+        //--- valores MPU
+        //--- valores MLX
+        private double[] temp = { 0, 0, 0, 0 };
+        private static short MLX1 = 0,
+                             MLX2 = 1,
+                             MLX3 = 2,
+                             MLX4 = 4;
+        //--- valores MLX
+        //--- valores potenc susp
+        private int[] susp = { 0, 0, 0, 0 };
+        private static short SUSP1 = 0,
+                             SUSP2 = 1,
+                             SUSP3 = 2,
+                             SUSP4 = 3;
+        //--- valores potenc susp
+        //--- valores vel rodas
+        private int[] vel = { 0, 0, 0, 0 };
+        private static short RODA1 = 0,
+                             RODA2 = 1,
+                             RODA3 = 2,
+                             RODA4 = 4;
+        //--- valores vel rodas
+        //--- Data received related
 
         //--- File related
         static StreamWriter sw = null;
@@ -79,255 +83,109 @@ namespace CarManGUI
             pegaNomesPortasSerial();
             tsmiStopSerial.Enabled = false;
             rtbSerialOutput.Text = "Iniciado";
-            chart1.BeginInit();
             // Initialise the delegate
             this.updateStatusDelegate = new UpdateStatusDelegate(this.UpdateGUI_Log);
         }
 
+        //
+
         private void UpdateFields(string pStr)
         {
-             switch (count) //lê na ordem que é mandada pelo programa no arduino
+            switch (count) //lê na ordem que é mandada pelo programa no arduino
             {
                 //MPU 6050 1
-                case 0: //gyro x mpu 1
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertAccel;
-                        mpu1x = valor;
-                        chart1.Series["MPU1"].Points.AddXY(mpu1x, mpu1y);//tbGyrX1.Text = valorConvertido.ToString("F");
-                    }
-                    break;
-                case 1: //gyro y mpu 1
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertAccel;
-                        mpu1y = valor;
-                        chart1.Series["MPU1"].Points.AddXY(mpu1x, mpu1y);//tbGyrY1.Text = valorConvertido.ToString("F");
-                    }
-                    break;
-                case 2: //gyro z mpu 1
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertAccel;
-                        tbGyrZ1.Text = valorConvertido.ToString("F");
-                    }
-                    break;
-                case 3: //accel x mpu 1
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertGyro;
-                        tbAcelX1.Text = valorConvertido.ToString();
-                    }
-                    break;
-                case 4: //accel y mpu 1
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertGyro;
-                        tbAcelY1.Text = valorConvertido.ToString();
-                    }
-                    break;
-                case 5: //accel z mpu 1
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertGyro;
-                        tbAcelZ1.Text = valorConvertido.ToString();
-                    }
-                    break;
+                case 0: mpuax[MPU1] = Int32.Parse(pStr); break;//accel x mpu 1
+                case 1: mpuay[MPU1] = Int32.Parse(pStr); break;//accel y mpu 1
+                case 2: mpuaz[MPU1] = Int32.Parse(pStr); break;//accel z mpu 1
+                case 3: mpugx[MPU1] = Int32.Parse(pStr); break;//gyro x mpu 1
+                case 4: mpugy[MPU1] = Int32.Parse(pStr); break;//gyro y mpu 1
+                case 5: mpugz[MPU1] = Int32.Parse(pStr); break;//gyro z mpu 1
                 //MPU 6050 2
-                case 6: //gyro x mpu 2
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertAccel;
-                        mpu2x = valor;
-                        chart1.Series["MPU2"].Points.AddXY(mpu2x, mpu2y);// tbGyrX2.Text = valorConvertido.ToString("F");
-                    }
-                    break;
-                case 7: //gyro y mpu 2
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertAccel;
-                        mpu2y = valor;
-                        chart1.Series["MPU2"].Points.AddXY(mpu2x, mpu2y);//tbGyrY2.Text = valorConvertido.ToString("F");
-                    }
-                    break;
-                case 8: //gyro z mpu 2
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertAccel;
-                        tbGyrZ2.Text = valorConvertido.ToString("F");
-                    }
-                    break;
-                case 9: //accel x mpu 2
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertGyro;
-                        tbAcelX2.Text = valorConvertido.ToString();
-                    }
-                    break;
-                case 10: //accel y mpu 2
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertGyro;
-                        tbAcelY2.Text = valorConvertido.ToString();
-                    }
-                    break;
-                case 11: //accel z mpu 2
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertGyro;
-                        tbAcelZ2.Text = valorConvertido.ToString();
-                    }
-                    break;
+                case 6: mpuax[MPU2] = Int32.Parse(pStr); break;//accel x mpu 2
+                case 7: mpuay[MPU2] = Int32.Parse(pStr); break;//accel y mpu 2
+                case 8: mpuaz[MPU2] = Int32.Parse(pStr); break;//accel z mpu 2
+                case 9: mpugx[MPU2] = Int32.Parse(pStr); break;//gyro x mpu 2
+                case 10: mpugy[MPU2] = Int32.Parse(pStr); break;//gyro y mpu 2
+                case 11: mpugz[MPU2] = Int32.Parse(pStr); break;//gyro z mpu 2
                 //MPU 6050 3
-                case 12: //gyro x mpu 3
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertAccel;
-                        mpu3x = valor;
-                        chart1.Series["MPU3"].Points.AddXY(mpu3x, mpu3y);//tbGyrX3.Text = valorConvertido.ToString("F");
-                    }
-                    break;
-                case 13: //gyro y mpu 3
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertAccel;
-                        mpu3y = valor;
-                        chart1.Series["MPU3"].Points.AddXY(mpu3x, mpu3y);//tbGyrY3.Text = valorConvertido.ToString("F");
-                    }
-                    break;
-                case 14: //gyro z mpu 3
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertAccel;
-                        tbGyrZ3.Text = valorConvertido.ToString("F");
-                    }
-                    break;
-                case 15: //accel x mpu 3
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertGyro;
-                        tbAcelX3.Text = pStr;
-                    }
-                    break;
-                case 16: //accel y mpu 3
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertGyro;
-                        tbAcelY3.Text = pStr;
-                    }
-                    break;
-                case 17: //accel z mpu 3
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
-                    {
-                        valor = Int32.Parse(pStr);
-                        valorConvertido = valor / convertGyro;
-                        tbAcelZ3.Text = pStr;
-                    }
-                    break;
+                case 12: mpuax[MPU3] = Int32.Parse(pStr); break;//accel x mpu 3
+                case 13: mpuay[MPU3] = Int32.Parse(pStr); break;//accel y mpu 3
+                case 14: mpuaz[MPU3] = Int32.Parse(pStr); break;//accel z mpu 3
+                case 15: mpugx[MPU3] = Int32.Parse(pStr); break;//gyro x mpu 3
+                case 16: mpugy[MPU3] = Int32.Parse(pStr); break;//gyro y mpu 3
+                case 17: mpugz[MPU3] = Int32.Parse(pStr); break;//gyro z mpu 3
                 //MLX 90614 (all temp disc)
-                case 18: //mlx 1 FR
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpTempDiscs"])
-                    {
-                        tbTempDiscFR.Text = pStr + " Kelvin";
-                        tkbTempDiscFR.Value = Int32.Parse(pStr);
-                    }
-                    break;
-                case 19: //mlx 2 FL
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpTempDiscs"])
-                    {
-                        tbTempDiscFL.Text = pStr + " Kelvin";
-                        tkbTempDiscFL.Value = Int32.Parse(pStr);
-                    }
-                    break;
-                case 20: //mlx 3 RR
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpTempDiscs"])
-                    {
-                        tbTempDiscRR.Text = pStr + " Kelvin";
-                        tkbTempDiscRR.Value = Int32.Parse(pStr);
-                    }
-                    break;
-                case 21: //mlx 4 RL
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpTempDiscs"])
-                    {
-                        tbTempDiscRL.Text = pStr + " Kelvin";
-                        tkbTempDiscRL.Value = Int32.Parse(pStr);
-                    }
-                    break;
+                case 18: temp[MLX1] = float.Parse(pStr); break;//mlx 1 FR
+                case 19: temp[MLX2] = float.Parse(pStr); break;//mlx 2 FL
+                case 20: temp[MLX3] = float.Parse(pStr); break;//mlx 3 RR
+                case 21: temp[MLX4] = float.Parse(pStr); break;//mlx 4 RL
                 //potenciometros suspensão(todos)
-                case 22: //potenciometro FR
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpSuspPosition"])
-                    {
-                        tbSuspFR.Text = pStr;
-                        pbSuspFR.Value = Int32.Parse(pStr);
-                    }
-                    break;
-                case 23: //potenciometro FL
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpSuspPosition"])
-                    {
-                        tbSuspFL.Text = pStr;
-                        pbSuspFL.Value = Int32.Parse(pStr);
-                    }
-                    break;
-                case 24: //potenciometro RR
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpSuspPosition"])
-                    {
-                        tbSuspRR.Text = pStr;
-                        pbSuspRR.Value = Int32.Parse(pStr);
-                    }
-                    break;
-                case 25: //potenciometro RL
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpSuspPosition"])
-                    {
-                        tbSuspRL.Text = pStr;
-                        pbSuspRL.Value = Int32.Parse(pStr);
-                    }
-                    break;
+                case 22: susp[SUSP1] = Int32.Parse(pStr); break;//potenciometro FR
+                case 23: susp[SUSP2] = Int32.Parse(pStr); break;//potenciometro FL
+                case 24: susp[SUSP3] = Int32.Parse(pStr); break;//potenciometro RR
+                case 25: susp[SUSP4] = Int32.Parse(pStr); break;//potenciometro RL
                 //ky003 all vel rodas
-                case 26: //vel roda FR
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpVelRodas"])
-                    {
-                        tbVelRodaFR.Text = pStr;
-                        pbVelRodaFR.Value = Int32.Parse(pStr);
-                    }
-                    break;
-                case 27: //vel roda FL
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpVelRodas"])
-                    {
-                        tbVelRodaFL.Text = pStr;
-                        pbVelRodaFL.Value = Int32.Parse(pStr);
-                    }
-                    break;
-                case 28: //vel roda RR
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpVelRodas"])
-                    {
-                        tbVelRodaRR.Text = pStr;
-                        pbVelRodaRR.Value = Int32.Parse(pStr);
-                    }
-                    break;
-                case 29: //vel roda RL
-                    if (tcTelas.SelectedTab == tcTelas.TabPages["tpVelRodas"])
-                    {
-                        tbVelRodaRL.Text = pStr;
-                        pbVelRodaRL.Value = Int32.Parse(pStr);
-                    }
-                    break;
+                case 26: vel[RODA1] = Int32.Parse(pStr); break;//vel roda FR
+                case 27: vel[RODA2] = Int32.Parse(pStr); break;//vel roda FL
+                case 28: vel[RODA3] = Int32.Parse(pStr); break;//vel roda RR
+                case 29: vel[RODA4] = Int32.Parse(pStr); break;//vel roda RL
+            }
+            if (tcTelas.SelectedTab == tcTelas.TabPages["tpAccels"])
+            {//valorConvertido = valor / convertAccel;// valorConvertido.ToString("F");
+                tbAccelX1.Text = mpuax[MPU1].ToString();
+                tbAccelY1.Text = mpuay[MPU1].ToString();
+                tbAccelZ1.Text = mpuaz[MPU1].ToString();
+                tbAccelX2.Text = mpuax[MPU2].ToString();
+                tbAccelY2.Text = mpuay[MPU2].ToString();
+                tbAccelZ2.Text = mpuaz[MPU2].ToString();
+                tbAccelX3.Text = mpuax[MPU3].ToString();
+                tbAccelY3.Text = mpuay[MPU3].ToString();
+                tbAccelZ3.Text = mpuaz[MPU3].ToString();
+            }
+            if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
+            {
+                tbGyroX1.Text = mpugx[MPU1].ToString();
+                tbGyroY1.Text = mpugy[MPU1].ToString();
+                tbGyroZ1.Text = mpugz[MPU1].ToString();
+                tbGyroX2.Text = mpugx[MPU2].ToString();
+                tbGyroY2.Text = mpugy[MPU2].ToString();
+                tbGyroZ2.Text = mpugz[MPU2].ToString();
+                tbGyroX3.Text = mpugx[MPU3].ToString();
+                tbGyroY3.Text = mpugy[MPU3].ToString();
+                tbGyroZ3.Text = mpugz[MPU3].ToString();
+            }
+            if (tcTelas.SelectedTab == tcTelas.TabPages["tpTempDiscs"])
+            {
+                tbTempDiscFL.Text = temp[MLX1].ToString("F") + " ºC";
+                tbTempDiscFR.Text = temp[MLX2].ToString("F") + " ºC";
+                tbTempDiscRL.Text = temp[MLX3].ToString("F") + " ºC";
+                tbTempDiscRR.Text = temp[MLX4].ToString("F") + " ºC";
+                tkbTempDiscFR.Value = Convert.ToInt32(temp[MLX1]);
+                tkbTempDiscFL.Value = Convert.ToInt32(temp[MLX2]);
+                tkbTempDiscRR.Value = Convert.ToInt32(temp[MLX3]);
+                tkbTempDiscRL.Value = Convert.ToInt32(temp[MLX4]);
+            }
+            if (tcTelas.SelectedTab == tcTelas.TabPages["tpSuspPosition"])
+            {
+                tbSuspFL.Text = susp[SUSP1].ToString();
+                tbSuspFR.Text = susp[SUSP2].ToString();
+                tbSuspRL.Text = susp[SUSP3].ToString();
+                tbSuspRR.Text = susp[SUSP4].ToString();
+                pbSuspFL.Value = susp[SUSP1];
+                pbSuspFR.Value = susp[SUSP2];
+                pbSuspRL.Value = susp[SUSP3];
+                pbSuspRR.Value = susp[SUSP4];
+            }
+            if (tcTelas.SelectedTab == tcTelas.TabPages["tpVelRodas"])
+            {
+                tbVelRodaFR.Text = vel[RODA1].ToString();
+                tbVelRodaFR.Text = vel[RODA2].ToString();
+                tbVelRodaRL.Text = vel[RODA3].ToString();
+                tbVelRodaRR.Text = vel[RODA4].ToString();
+                pbVelRodaFL.Value = vel[RODA1];
+                pbVelRodaFR.Value = vel[RODA2];
+                pbVelRodaRL.Value = vel[RODA3];
+                pbVelRodaRR.Value = vel[RODA4];
             }
         }
 
@@ -357,7 +215,7 @@ namespace CarManGUI
 
                     string sModified = line.Substring(20);
 
-                    strlist = sModified.Split(sepearator, strNr,
+                    strlist = sModified.Split(sepearator, strNr,//gyro
                     StringSplitOptions.RemoveEmptyEntries);
                     
                     double valorLog, valorConvertidoLog = 0.0;
@@ -369,13 +227,13 @@ namespace CarManGUI
                             switch (countLine) //lê na ordem que é mandada pelo programa no arduino
                             {
                                 //MPU 6050 1
-                                case 0: //gyro mpu 1
+                                case 0: //accel mpu 1
                                 case 1:
                                 case 2:
-                                case 6: //gyro mpu 2
+                                case 6: //accel mpu 2
                                 case 7:
                                 case 8:
-                                case 12: //gyro mpu 3
+                                case 12: //accel mpu 3
                                 case 13:
                                 case 14:
                                     if (tcTelas.SelectedTab == tcTelas.TabPages["tpGyros"])
@@ -553,7 +411,7 @@ namespace CarManGUI
             // using the method 
             strlist = s.Split(sepearator, strNr,
                    StringSplitOptions.RemoveEmptyEntries);
-
+            strlist[0] = "";
             foreach (String str in strlist)
             {
                 rtbTesteNros.Text += count.ToString();
@@ -563,13 +421,6 @@ namespace CarManGUI
                 UpdateFields(str);
                 
                 count++;
-            }
-            if (chart1.Series["MPU1"].Points.Count == 4|| chart1.Series["MPU2"].Points.Count == 4|| chart1.Series["MPU3"].Points.Count == 4)
-            {
-                foreach (var series in chart1.Series)
-                {
-                    series.Points.Count();
-                }
             }
         }
 
@@ -589,6 +440,19 @@ namespace CarManGUI
             String[] ports = SerialPort.GetPortNames(); //escolher a ACM0
             cbSerialPorts.Items.AddRange(ports);
         }
+
+        //private void ViewChart1()
+        //{
+        //    Chart1 lChart = new Chart1(this);
+        //    tpGyros.Controls.Add (lChart);
+        //}
+
+        //
+
+        //private void tpGyros_Enter(object sender, EventArgs e)
+        //{
+        //    ViewChart1();
+        //}
 
         private void tsmiRec_Click(object sender, EventArgs e)
         {

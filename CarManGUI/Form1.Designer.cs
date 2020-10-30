@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 40D);
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 10D);
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 20D);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -51,48 +43,48 @@
             this.rtbSerialOutput = new System.Windows.Forms.RichTextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.cbSerialPorts = new System.Windows.Forms.ComboBox();
-            this.tpGyros = new System.Windows.Forms.TabPage();
+            this.tpAccels = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.tbGyrZ3 = new System.Windows.Forms.TextBox();
+            this.tbAccelZ3 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.tbGyrY3 = new System.Windows.Forms.TextBox();
+            this.tbAccelY3 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.tbGyrX3 = new System.Windows.Forms.TextBox();
+            this.tbAccelX3 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.tbGyrZ2 = new System.Windows.Forms.TextBox();
+            this.tbAccelZ2 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.tbGyrX2 = new System.Windows.Forms.TextBox();
+            this.tbAccelX2 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.tbGyrY2 = new System.Windows.Forms.TextBox();
+            this.tbAccelY2 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.tbGyrZ1 = new System.Windows.Forms.TextBox();
+            this.tbAccelZ1 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.tbGyrY1 = new System.Windows.Forms.TextBox();
+            this.tbAccelY1 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.tbGyrX1 = new System.Windows.Forms.TextBox();
-            this.tpAccels = new System.Windows.Forms.TabPage();
+            this.tbAccelX1 = new System.Windows.Forms.TextBox();
+            this.tpGyros = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.tbAcelZ3 = new System.Windows.Forms.TextBox();
+            this.tbGyroZ3 = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.tbAcelY3 = new System.Windows.Forms.TextBox();
+            this.tbGyroY3 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.tbAcelX3 = new System.Windows.Forms.TextBox();
+            this.tbGyroX3 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.tbAcelZ2 = new System.Windows.Forms.TextBox();
+            this.tbGyroZ2 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.tbAcelX2 = new System.Windows.Forms.TextBox();
+            this.tbGyroX2 = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.tbAcelY2 = new System.Windows.Forms.TextBox();
+            this.tbGyroY2 = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.tbAcelZ1 = new System.Windows.Forms.TextBox();
+            this.tbGyroZ1 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.tbAcelY1 = new System.Windows.Forms.TextBox();
+            this.tbGyroY1 = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.tbAcelX1 = new System.Windows.Forms.TextBox();
+            this.tbGyroX1 = new System.Windows.Forms.TextBox();
             this.tpTempDiscs = new System.Windows.Forms.TabPage();
             this.tbTempDiscRL = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -132,13 +124,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbVelRodaFR = new System.Windows.Forms.TextBox();
             this.pbVelRodaFR = new System.Windows.Forms.ProgressBar();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tcTelas.SuspendLayout();
             this.tpConfig.SuspendLayout();
-            this.tpGyros.SuspendLayout();
             this.tpAccels.SuspendLayout();
+            this.tpGyros.SuspendLayout();
             this.tpTempDiscs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tkbTempDiscRL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tkbTempDiscRR)).BeginInit();
@@ -146,7 +137,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tkbTempDiscFR)).BeginInit();
             this.tpSuspPosition.SuspendLayout();
             this.tpVelRodas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -225,8 +215,8 @@
             // tcTelas
             // 
             this.tcTelas.Controls.Add(this.tpConfig);
-            this.tcTelas.Controls.Add(this.tpGyros);
             this.tcTelas.Controls.Add(this.tpAccels);
+            this.tcTelas.Controls.Add(this.tpGyros);
             this.tcTelas.Controls.Add(this.tpTempDiscs);
             this.tcTelas.Controls.Add(this.tpSuspPosition);
             this.tcTelas.Controls.Add(this.tpVelRodas);
@@ -294,35 +284,34 @@
             this.cbSerialPorts.TabIndex = 0;
             this.cbSerialPorts.Text = "/dev/tty*";
             // 
-            // tpGyros
+            // tpAccels
             // 
-            this.tpGyros.BackColor = System.Drawing.Color.Transparent;
-            this.tpGyros.Controls.Add(this.chart1);
-            this.tpGyros.Controls.Add(this.groupBox3);
-            this.tpGyros.Controls.Add(this.groupBox2);
-            this.tpGyros.Controls.Add(this.label17);
-            this.tpGyros.Controls.Add(this.tbGyrZ3);
-            this.tpGyros.Controls.Add(this.label16);
-            this.tpGyros.Controls.Add(this.tbGyrY3);
-            this.tpGyros.Controls.Add(this.label15);
-            this.tpGyros.Controls.Add(this.tbGyrX3);
-            this.tpGyros.Controls.Add(this.label14);
-            this.tpGyros.Controls.Add(this.tbGyrZ2);
-            this.tpGyros.Controls.Add(this.label13);
-            this.tpGyros.Controls.Add(this.tbGyrX2);
-            this.tpGyros.Controls.Add(this.label12);
-            this.tpGyros.Controls.Add(this.tbGyrY2);
-            this.tpGyros.Controls.Add(this.label11);
-            this.tpGyros.Controls.Add(this.tbGyrZ1);
-            this.tpGyros.Controls.Add(this.label10);
-            this.tpGyros.Controls.Add(this.tbGyrY1);
-            this.tpGyros.Controls.Add(this.label9);
-            this.tpGyros.Controls.Add(this.tbGyrX1);
-            this.tpGyros.Location = new System.Drawing.Point(4, 22);
-            this.tpGyros.Name = "tpGyros";
-            this.tpGyros.Size = new System.Drawing.Size(360, 207);
-            this.tpGyros.TabIndex = 3;
-            this.tpGyros.Text = "Gyros";
+            this.tpAccels.BackColor = System.Drawing.Color.Transparent;
+            this.tpAccels.Controls.Add(this.groupBox3);
+            this.tpAccels.Controls.Add(this.groupBox2);
+            this.tpAccels.Controls.Add(this.label17);
+            this.tpAccels.Controls.Add(this.tbAccelZ3);
+            this.tpAccels.Controls.Add(this.label16);
+            this.tpAccels.Controls.Add(this.tbAccelY3);
+            this.tpAccels.Controls.Add(this.label15);
+            this.tpAccels.Controls.Add(this.tbAccelX3);
+            this.tpAccels.Controls.Add(this.label14);
+            this.tpAccels.Controls.Add(this.tbAccelZ2);
+            this.tpAccels.Controls.Add(this.label13);
+            this.tpAccels.Controls.Add(this.tbAccelX2);
+            this.tpAccels.Controls.Add(this.label12);
+            this.tpAccels.Controls.Add(this.tbAccelY2);
+            this.tpAccels.Controls.Add(this.label11);
+            this.tpAccels.Controls.Add(this.tbAccelZ1);
+            this.tpAccels.Controls.Add(this.label10);
+            this.tpAccels.Controls.Add(this.tbAccelY1);
+            this.tpAccels.Controls.Add(this.label9);
+            this.tpAccels.Controls.Add(this.tbAccelX1);
+            this.tpAccels.Location = new System.Drawing.Point(4, 22);
+            this.tpAccels.Name = "tpAccels";
+            this.tpAccels.Size = new System.Drawing.Size(360, 207);
+            this.tpAccels.TabIndex = 3;
+            this.tpAccels.Text = "Accel";
             // 
             // groupBox3
             // 
@@ -349,15 +338,15 @@
             this.label17.TabIndex = 20;
             this.label17.Text = "Z axis (3)";
             // 
-            // tbGyrZ3
+            // tbAccelZ3
             // 
-            this.tbGyrZ3.Location = new System.Drawing.Point(4, 178);
-            this.tbGyrZ3.Name = "tbGyrZ3";
-            this.tbGyrZ3.ReadOnly = true;
-            this.tbGyrZ3.Size = new System.Drawing.Size(100, 20);
-            this.tbGyrZ3.TabIndex = 19;
-            this.tbGyrZ3.Text = "0";
-            this.tbGyrZ3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAccelZ3.Location = new System.Drawing.Point(4, 178);
+            this.tbAccelZ3.Name = "tbAccelZ3";
+            this.tbAccelZ3.ReadOnly = true;
+            this.tbAccelZ3.Size = new System.Drawing.Size(100, 20);
+            this.tbAccelZ3.TabIndex = 19;
+            this.tbAccelZ3.Text = "0";
+            this.tbAccelZ3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label16
             // 
@@ -368,15 +357,15 @@
             this.label16.TabIndex = 18;
             this.label16.Text = "Y axis (3)";
             // 
-            // tbGyrY3
+            // tbAccelY3
             // 
-            this.tbGyrY3.Location = new System.Drawing.Point(166, 152);
-            this.tbGyrY3.Name = "tbGyrY3";
-            this.tbGyrY3.ReadOnly = true;
-            this.tbGyrY3.Size = new System.Drawing.Size(100, 20);
-            this.tbGyrY3.TabIndex = 17;
-            this.tbGyrY3.Text = "0";
-            this.tbGyrY3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAccelY3.Location = new System.Drawing.Point(166, 152);
+            this.tbAccelY3.Name = "tbAccelY3";
+            this.tbAccelY3.ReadOnly = true;
+            this.tbAccelY3.Size = new System.Drawing.Size(100, 20);
+            this.tbAccelY3.TabIndex = 17;
+            this.tbAccelY3.Text = "0";
+            this.tbAccelY3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label15
             // 
@@ -387,15 +376,15 @@
             this.label15.TabIndex = 16;
             this.label15.Text = "X axis (3)";
             // 
-            // tbGyrX3
+            // tbAccelX3
             // 
-            this.tbGyrX3.Location = new System.Drawing.Point(4, 152);
-            this.tbGyrX3.Name = "tbGyrX3";
-            this.tbGyrX3.ReadOnly = true;
-            this.tbGyrX3.Size = new System.Drawing.Size(100, 20);
-            this.tbGyrX3.TabIndex = 15;
-            this.tbGyrX3.Text = "0";
-            this.tbGyrX3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAccelX3.Location = new System.Drawing.Point(4, 152);
+            this.tbAccelX3.Name = "tbAccelX3";
+            this.tbAccelX3.ReadOnly = true;
+            this.tbAccelX3.Size = new System.Drawing.Size(100, 20);
+            this.tbAccelX3.TabIndex = 15;
+            this.tbAccelX3.Text = "0";
+            this.tbAccelX3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
             // 
@@ -406,15 +395,15 @@
             this.label14.TabIndex = 14;
             this.label14.Text = "Z axis (2)";
             // 
-            // tbGyrZ2
+            // tbAccelZ2
             // 
-            this.tbGyrZ2.Location = new System.Drawing.Point(4, 105);
-            this.tbGyrZ2.Name = "tbGyrZ2";
-            this.tbGyrZ2.ReadOnly = true;
-            this.tbGyrZ2.Size = new System.Drawing.Size(100, 20);
-            this.tbGyrZ2.TabIndex = 13;
-            this.tbGyrZ2.Text = "0";
-            this.tbGyrZ2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAccelZ2.Location = new System.Drawing.Point(4, 105);
+            this.tbAccelZ2.Name = "tbAccelZ2";
+            this.tbAccelZ2.ReadOnly = true;
+            this.tbAccelZ2.Size = new System.Drawing.Size(100, 20);
+            this.tbAccelZ2.TabIndex = 13;
+            this.tbAccelZ2.Text = "0";
+            this.tbAccelZ2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label13
             // 
@@ -425,15 +414,15 @@
             this.label13.TabIndex = 12;
             this.label13.Text = "Y axis (2)";
             // 
-            // tbGyrX2
+            // tbAccelX2
             // 
-            this.tbGyrX2.Location = new System.Drawing.Point(4, 79);
-            this.tbGyrX2.Name = "tbGyrX2";
-            this.tbGyrX2.ReadOnly = true;
-            this.tbGyrX2.Size = new System.Drawing.Size(100, 20);
-            this.tbGyrX2.TabIndex = 11;
-            this.tbGyrX2.Text = "0";
-            this.tbGyrX2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAccelX2.Location = new System.Drawing.Point(4, 79);
+            this.tbAccelX2.Name = "tbAccelX2";
+            this.tbAccelX2.ReadOnly = true;
+            this.tbAccelX2.Size = new System.Drawing.Size(100, 20);
+            this.tbAccelX2.TabIndex = 11;
+            this.tbAccelX2.Text = "0";
+            this.tbAccelX2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label12
             // 
@@ -444,15 +433,15 @@
             this.label12.TabIndex = 10;
             this.label12.Text = "X axis (2)";
             // 
-            // tbGyrY2
+            // tbAccelY2
             // 
-            this.tbGyrY2.Location = new System.Drawing.Point(166, 79);
-            this.tbGyrY2.Name = "tbGyrY2";
-            this.tbGyrY2.ReadOnly = true;
-            this.tbGyrY2.Size = new System.Drawing.Size(100, 20);
-            this.tbGyrY2.TabIndex = 9;
-            this.tbGyrY2.Text = "0";
-            this.tbGyrY2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAccelY2.Location = new System.Drawing.Point(166, 79);
+            this.tbAccelY2.Name = "tbAccelY2";
+            this.tbAccelY2.ReadOnly = true;
+            this.tbAccelY2.Size = new System.Drawing.Size(100, 20);
+            this.tbAccelY2.TabIndex = 9;
+            this.tbAccelY2.Text = "0";
+            this.tbAccelY2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label11
             // 
@@ -463,15 +452,15 @@
             this.label11.TabIndex = 8;
             this.label11.Text = "Z axis (1)";
             // 
-            // tbGyrZ1
+            // tbAccelZ1
             // 
-            this.tbGyrZ1.Location = new System.Drawing.Point(4, 29);
-            this.tbGyrZ1.Name = "tbGyrZ1";
-            this.tbGyrZ1.ReadOnly = true;
-            this.tbGyrZ1.Size = new System.Drawing.Size(100, 20);
-            this.tbGyrZ1.TabIndex = 7;
-            this.tbGyrZ1.Text = "0";
-            this.tbGyrZ1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAccelZ1.Location = new System.Drawing.Point(4, 29);
+            this.tbAccelZ1.Name = "tbAccelZ1";
+            this.tbAccelZ1.ReadOnly = true;
+            this.tbAccelZ1.Size = new System.Drawing.Size(100, 20);
+            this.tbAccelZ1.TabIndex = 7;
+            this.tbAccelZ1.Text = "0";
+            this.tbAccelZ1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label10
             // 
@@ -482,15 +471,15 @@
             this.label10.TabIndex = 6;
             this.label10.Text = "Y axis (1)";
             // 
-            // tbGyrY1
+            // tbAccelY1
             // 
-            this.tbGyrY1.Location = new System.Drawing.Point(166, 3);
-            this.tbGyrY1.Name = "tbGyrY1";
-            this.tbGyrY1.ReadOnly = true;
-            this.tbGyrY1.Size = new System.Drawing.Size(100, 20);
-            this.tbGyrY1.TabIndex = 5;
-            this.tbGyrY1.Text = "0";
-            this.tbGyrY1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAccelY1.Location = new System.Drawing.Point(166, 3);
+            this.tbAccelY1.Name = "tbAccelY1";
+            this.tbAccelY1.ReadOnly = true;
+            this.tbAccelY1.Size = new System.Drawing.Size(100, 20);
+            this.tbAccelY1.TabIndex = 5;
+            this.tbAccelY1.Text = "0";
+            this.tbAccelY1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
             // 
@@ -501,44 +490,44 @@
             this.label9.TabIndex = 4;
             this.label9.Text = "X axis (1)";
             // 
-            // tbGyrX1
+            // tbAccelX1
             // 
-            this.tbGyrX1.Location = new System.Drawing.Point(4, 3);
-            this.tbGyrX1.Name = "tbGyrX1";
-            this.tbGyrX1.ReadOnly = true;
-            this.tbGyrX1.Size = new System.Drawing.Size(100, 20);
-            this.tbGyrX1.TabIndex = 3;
-            this.tbGyrX1.Text = "0";
-            this.tbGyrX1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbAccelX1.Location = new System.Drawing.Point(4, 3);
+            this.tbAccelX1.Name = "tbAccelX1";
+            this.tbAccelX1.ReadOnly = true;
+            this.tbAccelX1.Size = new System.Drawing.Size(100, 20);
+            this.tbAccelX1.TabIndex = 3;
+            this.tbAccelX1.Text = "0";
+            this.tbAccelX1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // tpAccels
+            // tpGyros
             // 
-            this.tpAccels.BackColor = System.Drawing.Color.Transparent;
-            this.tpAccels.Controls.Add(this.groupBox4);
-            this.tpAccels.Controls.Add(this.groupBox5);
-            this.tpAccels.Controls.Add(this.label18);
-            this.tpAccels.Controls.Add(this.tbAcelZ3);
-            this.tpAccels.Controls.Add(this.label19);
-            this.tpAccels.Controls.Add(this.tbAcelY3);
-            this.tpAccels.Controls.Add(this.label20);
-            this.tpAccels.Controls.Add(this.tbAcelX3);
-            this.tpAccels.Controls.Add(this.label21);
-            this.tpAccels.Controls.Add(this.tbAcelZ2);
-            this.tpAccels.Controls.Add(this.label22);
-            this.tpAccels.Controls.Add(this.tbAcelX2);
-            this.tpAccels.Controls.Add(this.label23);
-            this.tpAccels.Controls.Add(this.tbAcelY2);
-            this.tpAccels.Controls.Add(this.label24);
-            this.tpAccels.Controls.Add(this.tbAcelZ1);
-            this.tpAccels.Controls.Add(this.label25);
-            this.tpAccels.Controls.Add(this.tbAcelY1);
-            this.tpAccels.Controls.Add(this.label26);
-            this.tpAccels.Controls.Add(this.tbAcelX1);
-            this.tpAccels.Location = new System.Drawing.Point(4, 22);
-            this.tpAccels.Name = "tpAccels";
-            this.tpAccels.Size = new System.Drawing.Size(360, 207);
-            this.tpAccels.TabIndex = 4;
-            this.tpAccels.Text = "Accels";
+            this.tpGyros.BackColor = System.Drawing.Color.Transparent;
+            this.tpGyros.Controls.Add(this.groupBox4);
+            this.tpGyros.Controls.Add(this.groupBox5);
+            this.tpGyros.Controls.Add(this.label18);
+            this.tpGyros.Controls.Add(this.tbGyroZ3);
+            this.tpGyros.Controls.Add(this.label19);
+            this.tpGyros.Controls.Add(this.tbGyroY3);
+            this.tpGyros.Controls.Add(this.label20);
+            this.tpGyros.Controls.Add(this.tbGyroX3);
+            this.tpGyros.Controls.Add(this.label21);
+            this.tpGyros.Controls.Add(this.tbGyroZ2);
+            this.tpGyros.Controls.Add(this.label22);
+            this.tpGyros.Controls.Add(this.tbGyroX2);
+            this.tpGyros.Controls.Add(this.label23);
+            this.tpGyros.Controls.Add(this.tbGyroY2);
+            this.tpGyros.Controls.Add(this.label24);
+            this.tpGyros.Controls.Add(this.tbGyroZ1);
+            this.tpGyros.Controls.Add(this.label25);
+            this.tpGyros.Controls.Add(this.tbGyroY1);
+            this.tpGyros.Controls.Add(this.label26);
+            this.tpGyros.Controls.Add(this.tbGyroX1);
+            this.tpGyros.Location = new System.Drawing.Point(4, 22);
+            this.tpGyros.Name = "tpGyros";
+            this.tpGyros.Size = new System.Drawing.Size(360, 207);
+            this.tpGyros.TabIndex = 4;
+            this.tpGyros.Text = "Gyro";
             // 
             // groupBox4
             // 
@@ -565,15 +554,15 @@
             this.label18.TabIndex = 40;
             this.label18.Text = "Z axis (3)";
             // 
-            // tbAcelZ3
+            // tbGyroZ3
             // 
-            this.tbAcelZ3.Location = new System.Drawing.Point(4, 178);
-            this.tbAcelZ3.Name = "tbAcelZ3";
-            this.tbAcelZ3.ReadOnly = true;
-            this.tbAcelZ3.Size = new System.Drawing.Size(100, 20);
-            this.tbAcelZ3.TabIndex = 39;
-            this.tbAcelZ3.Text = "0";
-            this.tbAcelZ3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbGyroZ3.Location = new System.Drawing.Point(4, 178);
+            this.tbGyroZ3.Name = "tbGyroZ3";
+            this.tbGyroZ3.ReadOnly = true;
+            this.tbGyroZ3.Size = new System.Drawing.Size(100, 20);
+            this.tbGyroZ3.TabIndex = 39;
+            this.tbGyroZ3.Text = "0";
+            this.tbGyroZ3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label19
             // 
@@ -584,15 +573,15 @@
             this.label19.TabIndex = 38;
             this.label19.Text = "Y axis (3)";
             // 
-            // tbAcelY3
+            // tbGyroY3
             // 
-            this.tbAcelY3.Location = new System.Drawing.Point(166, 152);
-            this.tbAcelY3.Name = "tbAcelY3";
-            this.tbAcelY3.ReadOnly = true;
-            this.tbAcelY3.Size = new System.Drawing.Size(100, 20);
-            this.tbAcelY3.TabIndex = 37;
-            this.tbAcelY3.Text = "0";
-            this.tbAcelY3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbGyroY3.Location = new System.Drawing.Point(166, 152);
+            this.tbGyroY3.Name = "tbGyroY3";
+            this.tbGyroY3.ReadOnly = true;
+            this.tbGyroY3.Size = new System.Drawing.Size(100, 20);
+            this.tbGyroY3.TabIndex = 37;
+            this.tbGyroY3.Text = "0";
+            this.tbGyroY3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label20
             // 
@@ -603,15 +592,15 @@
             this.label20.TabIndex = 36;
             this.label20.Text = "X axis (3)";
             // 
-            // tbAcelX3
+            // tbGyroX3
             // 
-            this.tbAcelX3.Location = new System.Drawing.Point(4, 152);
-            this.tbAcelX3.Name = "tbAcelX3";
-            this.tbAcelX3.ReadOnly = true;
-            this.tbAcelX3.Size = new System.Drawing.Size(100, 20);
-            this.tbAcelX3.TabIndex = 35;
-            this.tbAcelX3.Text = "0";
-            this.tbAcelX3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbGyroX3.Location = new System.Drawing.Point(4, 152);
+            this.tbGyroX3.Name = "tbGyroX3";
+            this.tbGyroX3.ReadOnly = true;
+            this.tbGyroX3.Size = new System.Drawing.Size(100, 20);
+            this.tbGyroX3.TabIndex = 35;
+            this.tbGyroX3.Text = "0";
+            this.tbGyroX3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label21
             // 
@@ -622,15 +611,15 @@
             this.label21.TabIndex = 34;
             this.label21.Text = "Z axis (2)";
             // 
-            // tbAcelZ2
+            // tbGyroZ2
             // 
-            this.tbAcelZ2.Location = new System.Drawing.Point(4, 105);
-            this.tbAcelZ2.Name = "tbAcelZ2";
-            this.tbAcelZ2.ReadOnly = true;
-            this.tbAcelZ2.Size = new System.Drawing.Size(100, 20);
-            this.tbAcelZ2.TabIndex = 33;
-            this.tbAcelZ2.Text = "0";
-            this.tbAcelZ2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbGyroZ2.Location = new System.Drawing.Point(4, 105);
+            this.tbGyroZ2.Name = "tbGyroZ2";
+            this.tbGyroZ2.ReadOnly = true;
+            this.tbGyroZ2.Size = new System.Drawing.Size(100, 20);
+            this.tbGyroZ2.TabIndex = 33;
+            this.tbGyroZ2.Text = "0";
+            this.tbGyroZ2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label22
             // 
@@ -641,15 +630,15 @@
             this.label22.TabIndex = 32;
             this.label22.Text = "Y axis (2)";
             // 
-            // tbAcelX2
+            // tbGyroX2
             // 
-            this.tbAcelX2.Location = new System.Drawing.Point(4, 79);
-            this.tbAcelX2.Name = "tbAcelX2";
-            this.tbAcelX2.ReadOnly = true;
-            this.tbAcelX2.Size = new System.Drawing.Size(100, 20);
-            this.tbAcelX2.TabIndex = 31;
-            this.tbAcelX2.Text = "0";
-            this.tbAcelX2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbGyroX2.Location = new System.Drawing.Point(4, 79);
+            this.tbGyroX2.Name = "tbGyroX2";
+            this.tbGyroX2.ReadOnly = true;
+            this.tbGyroX2.Size = new System.Drawing.Size(100, 20);
+            this.tbGyroX2.TabIndex = 31;
+            this.tbGyroX2.Text = "0";
+            this.tbGyroX2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label23
             // 
@@ -660,15 +649,15 @@
             this.label23.TabIndex = 30;
             this.label23.Text = "X axis (2)";
             // 
-            // tbAcelY2
+            // tbGyroY2
             // 
-            this.tbAcelY2.Location = new System.Drawing.Point(166, 79);
-            this.tbAcelY2.Name = "tbAcelY2";
-            this.tbAcelY2.ReadOnly = true;
-            this.tbAcelY2.Size = new System.Drawing.Size(100, 20);
-            this.tbAcelY2.TabIndex = 29;
-            this.tbAcelY2.Text = "0";
-            this.tbAcelY2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbGyroY2.Location = new System.Drawing.Point(166, 79);
+            this.tbGyroY2.Name = "tbGyroY2";
+            this.tbGyroY2.ReadOnly = true;
+            this.tbGyroY2.Size = new System.Drawing.Size(100, 20);
+            this.tbGyroY2.TabIndex = 29;
+            this.tbGyroY2.Text = "0";
+            this.tbGyroY2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label24
             // 
@@ -679,15 +668,15 @@
             this.label24.TabIndex = 28;
             this.label24.Text = "Z axis (1)";
             // 
-            // tbAcelZ1
+            // tbGyroZ1
             // 
-            this.tbAcelZ1.Location = new System.Drawing.Point(4, 29);
-            this.tbAcelZ1.Name = "tbAcelZ1";
-            this.tbAcelZ1.ReadOnly = true;
-            this.tbAcelZ1.Size = new System.Drawing.Size(100, 20);
-            this.tbAcelZ1.TabIndex = 27;
-            this.tbAcelZ1.Text = "0";
-            this.tbAcelZ1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbGyroZ1.Location = new System.Drawing.Point(4, 29);
+            this.tbGyroZ1.Name = "tbGyroZ1";
+            this.tbGyroZ1.ReadOnly = true;
+            this.tbGyroZ1.Size = new System.Drawing.Size(100, 20);
+            this.tbGyroZ1.TabIndex = 27;
+            this.tbGyroZ1.Text = "0";
+            this.tbGyroZ1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label25
             // 
@@ -698,15 +687,15 @@
             this.label25.TabIndex = 26;
             this.label25.Text = "Y axis (1)";
             // 
-            // tbAcelY1
+            // tbGyroY1
             // 
-            this.tbAcelY1.Location = new System.Drawing.Point(166, 3);
-            this.tbAcelY1.Name = "tbAcelY1";
-            this.tbAcelY1.ReadOnly = true;
-            this.tbAcelY1.Size = new System.Drawing.Size(100, 20);
-            this.tbAcelY1.TabIndex = 25;
-            this.tbAcelY1.Text = "0";
-            this.tbAcelY1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbGyroY1.Location = new System.Drawing.Point(166, 3);
+            this.tbGyroY1.Name = "tbGyroY1";
+            this.tbGyroY1.ReadOnly = true;
+            this.tbGyroY1.Size = new System.Drawing.Size(100, 20);
+            this.tbGyroY1.TabIndex = 25;
+            this.tbGyroY1.Text = "0";
+            this.tbGyroY1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label26
             // 
@@ -717,15 +706,15 @@
             this.label26.TabIndex = 24;
             this.label26.Text = "X axis (1)";
             // 
-            // tbAcelX1
+            // tbGyroX1
             // 
-            this.tbAcelX1.Location = new System.Drawing.Point(4, 3);
-            this.tbAcelX1.Name = "tbAcelX1";
-            this.tbAcelX1.ReadOnly = true;
-            this.tbAcelX1.Size = new System.Drawing.Size(100, 20);
-            this.tbAcelX1.TabIndex = 23;
-            this.tbAcelX1.Text = "0";
-            this.tbAcelX1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbGyroX1.Location = new System.Drawing.Point(4, 3);
+            this.tbGyroX1.Name = "tbGyroX1";
+            this.tbGyroX1.ReadOnly = true;
+            this.tbGyroX1.Size = new System.Drawing.Size(100, 20);
+            this.tbGyroX1.TabIndex = 23;
+            this.tbGyroX1.Text = "0";
+            this.tbGyroX1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tpTempDiscs
             // 
@@ -1137,45 +1126,6 @@
             this.pbVelRodaFR.Step = 1;
             this.pbVelRodaFR.TabIndex = 0;
             // 
-            // chart1
-            // 
-            chartArea1.AxisX.Interval = 5000D;
-            chartArea1.AxisY.Interval = 5000D;
-            chartArea1.BackColor = System.Drawing.Color.DarkGray;
-            chartArea1.BackImageTransparentColor = System.Drawing.Color.Transparent;
-            chartArea1.BackSecondaryColor = System.Drawing.Color.Black;
-            chartArea1.Name = "Gyro";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.BackColor = System.Drawing.Color.Silver;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(4, 3);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "Gyro";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "MPU1";
-            dataPoint1.Color = System.Drawing.Color.Red;
-            series1.Points.Add(dataPoint1);
-            series2.ChartArea = "Gyro";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Legend = "Legend1";
-            series2.Name = "MPU2";
-            dataPoint2.Color = System.Drawing.Color.Lime;
-            series2.Points.Add(dataPoint2);
-            series3.ChartArea = "Gyro";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Legend = "Legend1";
-            series3.Name = "MPU3";
-            dataPoint3.Color = System.Drawing.Color.Yellow;
-            series3.Points.Add(dataPoint3);
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
-            this.chart1.Series.Add(series3);
-            this.chart1.Size = new System.Drawing.Size(353, 191);
-            this.chart1.TabIndex = 23;
-            this.chart1.Text = "chart1";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1195,10 +1145,10 @@
             this.tcTelas.ResumeLayout(false);
             this.tpConfig.ResumeLayout(false);
             this.tpConfig.PerformLayout();
-            this.tpGyros.ResumeLayout(false);
-            this.tpGyros.PerformLayout();
             this.tpAccels.ResumeLayout(false);
             this.tpAccels.PerformLayout();
+            this.tpGyros.ResumeLayout(false);
+            this.tpGyros.PerformLayout();
             this.tpTempDiscs.ResumeLayout(false);
             this.tpTempDiscs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tkbTempDiscRL)).EndInit();
@@ -1209,7 +1159,6 @@
             this.tpSuspPosition.PerformLayout();
             this.tpVelRodas.ResumeLayout(false);
             this.tpVelRodas.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1247,49 +1196,49 @@
         private System.Windows.Forms.TextBox tbTempDiscFR;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TrackBar tkbTempDiscFR;
-        private System.Windows.Forms.TabPage tpGyros;
         private System.Windows.Forms.TabPage tpAccels;
+        private System.Windows.Forms.TabPage tpGyros;
         private System.Windows.Forms.ToolStripMenuItem tsmiRec;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox tbGyrZ3;
+        private System.Windows.Forms.TextBox tbAccelZ3;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox tbGyrY3;
+        private System.Windows.Forms.TextBox tbAccelY3;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox tbGyrX3;
+        private System.Windows.Forms.TextBox tbAccelX3;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox tbGyrZ2;
+        private System.Windows.Forms.TextBox tbAccelZ2;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox tbGyrX2;
+        private System.Windows.Forms.TextBox tbAccelX2;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox tbGyrY2;
+        private System.Windows.Forms.TextBox tbAccelY2;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox tbGyrZ1;
+        private System.Windows.Forms.TextBox tbAccelZ1;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox tbGyrY1;
+        private System.Windows.Forms.TextBox tbAccelY1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox tbGyrX1;
+        private System.Windows.Forms.TextBox tbAccelX1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox tbAcelZ3;
+        private System.Windows.Forms.TextBox tbGyroZ3;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox tbAcelY3;
+        private System.Windows.Forms.TextBox tbGyroY3;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox tbAcelX3;
+        private System.Windows.Forms.TextBox tbGyroX3;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox tbAcelZ2;
+        private System.Windows.Forms.TextBox tbGyroZ2;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox tbAcelX2;
+        private System.Windows.Forms.TextBox tbGyroX2;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox tbAcelY2;
+        private System.Windows.Forms.TextBox tbGyroY2;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox tbAcelZ1;
+        private System.Windows.Forms.TextBox tbGyroZ1;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox tbAcelY1;
+        private System.Windows.Forms.TextBox tbGyroY1;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox tbAcelX1;
+        private System.Windows.Forms.TextBox tbGyroX1;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox cbSerialPorts;
         private System.Windows.Forms.Label label28;
@@ -1311,7 +1260,6 @@
         private System.Windows.Forms.TextBox tbSuspFR;
         private System.Windows.Forms.ProgressBar pbSuspFR;
         private System.Windows.Forms.ToolStripMenuItem tsmiConvertLog;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 
