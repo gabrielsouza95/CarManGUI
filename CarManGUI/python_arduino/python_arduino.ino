@@ -49,8 +49,8 @@ int didConect = 0; //keeps the value if the connection was made
 
 //Endereco I2C do MPU6050
 const int MPU1 = 0x68;  //MPU com AD0 no GND ou sem nada
-const int MPU2 = 0x68;  //MPU com AD0 no GND ou sem nada
-const int MPU3 = 0x68;  //MPU com AD0 no 5V
+const int MPU2 = 0x69;  //MPU com AD0 no GND ou sem nada
+const int MPU3 = 0x60;  //MPU com AD0 no 5V
 
 //MPU6050 mpu; //variável MPU da biblioteca MPU
 //Variaveis para armazenar os valores dos sensores
@@ -129,8 +129,8 @@ void setup()
 //ver 1.1 - utilizando a biblioteca Wire para inicializar o MPU
   Wire.begin(); 
   initializeMPU(1,MPU1);
-  //initializeMPU(2,MPU2);
-  initializeMPU(3,MPU3);
+  initializeMPU(2,MPU2);
+  //initializeMPU(3,MPU3);
 //ver 1.1 - ==
 //ver 1.0 - utilizando a biblioteca do sensor (mpu)  
 //  mpu.initialize(); // utilizando a biblioteca MPU
@@ -141,10 +141,10 @@ void setup()
 // ## MPU 6050 (Giroscópio/Acelerômetro) ------------------------------------------ 
 
 // ## MLX 90614 (Temperatura) ------------------------------------------ 
-//  initializeMLX(1);
-//  initializeMLX(2);
-//  initializeMLX(3);
-//  initializeMLX(4);
+  initializeMLX(1);
+  initializeMLX(2);
+  initializeMLX(3);
+  initializeMLX(4);
 // ## MLX 90614 (Temperatura) ------------------------------------------ 
 }
 
@@ -321,14 +321,14 @@ void readSensorsData(){
   //ver 1.3 - agrupando a atualização de valores antes de começar a mandar pela serial
   getAccelValues    (1,MPU1, &AcX1, &AcY1, &AcZ1);
   getGyroValues     (1,MPU1, &GyX1, &GyY1, &GyZ1);
-  //getAccelValues    (2,MPU2, &AcX2, &AcY2, &AcZ2);
-  //getGyroValues     (2,MPU2, &GyX2, &GyY2, &GyZ2);
-  getAccelValues    (3,MPU3, &AcX3, &AcY3, &AcZ3);
-  getGyroValues     (3,MPU3, &GyX3, &GyY3, &GyZ3);
-  //getTempValue      (1,&Temp1);
-  //getTempValue      (2,&Temp2);
-  //getTempValue      (3,&Temp3);
-  //getTempValue      (4,&Temp4);
+  getAccelValues    (2,MPU2, &AcX2, &AcY2, &AcZ2);
+  getGyroValues     (2,MPU2, &GyX2, &GyY2, &GyZ2);
+  //getAccelValues    (3,MPU3, &AcX3, &AcY3, &AcZ3);
+  //getGyroValues     (3,MPU3, &GyX3, &GyY3, &GyZ3);
+  getTempValue      (1,&Temp1);
+  getTempValue      (2,&Temp2);
+  getTempValue      (3,&Temp3);
+  getTempValue      (4,&Temp4);
   //getAnalogValue (&Posic1,AnalogPin1); //gets suspension 1 posicion value
   //getAnalogValue (&Posic2,AnalogPin2); //gets suspension 2 posicion value
   //getAnalogValue (&Posic3,AnalogPin3); //gets suspension 3 posicion value
@@ -459,67 +459,9 @@ void loop()
 
 // ## Sensores ---------------------------------------------------------------------
   
-//  Wire.beginTransmission(MPU);  
-//  Wire.write(0x3B); // starting with register 0x3B (ACCEL_XOUT_H)  
-//  Wire.endTransmission(false);    
-//  
-//  Wire.requestFrom(MPU, 14, true); //Solicita os dados do sensor     
-//  
-//  //Armazena o valor dos sensores nas variaveis correspondentes  
-//  AcX = Wire.read()<<8|Wire.read(); //0x3B (ACCEL_XOUT_H) & 0x3C (ACCEL_XOUT_L)       
-//  AcY = Wire.read()<<8|Wire.read(); //0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)  
-//  AcZ = Wire.read()<<8|Wire.read(); //0x3F (ACCEL_ZOUT_H) & 0x40 (ACCEL_ZOUT_L)  
-//  Tmp = Wire.read()<<8|Wire.read(); //0x41 (TEMP_OUT_H) & 0x42 (TEMP_OUT_L)  
-  
-  //Mostra os valores na serial 
-  //mpu.getMotion6(&AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ); 
-  //getAccelValues();
-  //Serial.print("Acel. X = ");
-//  AX = AcX/16384.0; 
-  //Serial.print(AX);  
-  //Serial.print(" | Y = "); 
-//  AY = AcY/16384.0;
-  //Serial.print(AY);  
-  //Serial.print(" | Z = "); 
-//  AZ = AcZ/16384.0;
-  //Serial.print(AZ);  
 
-  //gyro
-  //getGyroValues();
-  //Serial.print(" | Gir. X = "); 
-//  GX = GyX/131.0; //calculca velocidade angular
-  //Serial.print(GX);  
-  //Serial.print(" | Y = "); 
-//  GY = GyY/131.0; //calculca velocidade angular
-  //Serial.print(GY);  
-  //Serial.print(" | Z = "); 
-//  GZ = GyZ/131.0; //calcula velocidade angular
-  //Serial.print(GZ);  
-  //Serial.print("\n");
-//  char sAX[10]; 
-//  sAX = dtostrf(10.1,10,2,sAX);
-//  char sAY[10]; 
-//  dtostrf(AY,10,2,sAY);
-//  char sAZ[10]; 
-//  dtostrf(AZ,10,2,sAZ);
-//  char sGX[10]; 
-//  dtostrf(GX,10,2,sGX);
-//  char sGY[10];
-//  dtostrf(GY,10,2,sGY);
-//  char sGZ[10];
-//  dtostrf(GZ,10,2,sGZ);
-//  char serial[100];
-  //sprintf(serial,"%s %s %s %s %s %s \n",sAX,sAY,sAZ,sGX,sGY,sGZ);
-//  Serial.print(sAX);
-//  x_acc= (AcX - (-74))*(2);
-//  Serial.print("x_acc= "); Serial.print(x_acc);
-//  Serial.print("\t\t");
-  
-//  gyro= (GyY - (-181))*(500);
-//  Serial.print("gyro= "); 
-//  Serial.print(gyro);
-/*  readSensorsData();
-  sendSensorsData(); */
+  //readSensorsData();
+  //sendSensorsData(); 
   String command = "";  //Used to store the latest received command
   int serialResult = 0; //return value for reading operation method on serial in put buffer
 

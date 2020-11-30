@@ -124,6 +124,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbVelRodaFR = new System.Windows.Forms.TextBox();
             this.pbVelRodaFR = new System.Windows.Forms.ProgressBar();
+            this.btReadPorts = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tcTelas.SuspendLayout();
@@ -229,6 +230,7 @@
             // tpConfig
             // 
             this.tpConfig.BackColor = System.Drawing.Color.Transparent;
+            this.tpConfig.Controls.Add(this.btReadPorts);
             this.tpConfig.Controls.Add(this.rtbTesteNros);
             this.tpConfig.Controls.Add(this.label28);
             this.tpConfig.Controls.Add(this.rtbSerialOutput);
@@ -244,7 +246,7 @@
             // 
             this.rtbTesteNros.Location = new System.Drawing.Point(64, 92);
             this.rtbTesteNros.Name = "rtbTesteNros";
-            this.rtbTesteNros.Size = new System.Drawing.Size(206, 112);
+            this.rtbTesteNros.Size = new System.Drawing.Size(293, 112);
             this.rtbTesteNros.TabIndex = 4;
             this.rtbTesteNros.Text = " ";
             // 
@@ -280,7 +282,7 @@
             this.cbSerialPorts.FormattingEnabled = true;
             this.cbSerialPorts.Location = new System.Drawing.Point(64, 12);
             this.cbSerialPorts.Name = "cbSerialPorts";
-            this.cbSerialPorts.Size = new System.Drawing.Size(206, 21);
+            this.cbSerialPorts.Size = new System.Drawing.Size(218, 21);
             this.cbSerialPorts.TabIndex = 0;
             this.cbSerialPorts.Text = "/dev/tty*";
             // 
@@ -1126,6 +1128,16 @@
             this.pbVelRodaFR.Step = 1;
             this.pbVelRodaFR.TabIndex = 0;
             // 
+            // btReadPorts
+            // 
+            this.btReadPorts.Location = new System.Drawing.Point(282, 11);
+            this.btReadPorts.Name = "btReadPorts";
+            this.btReadPorts.Size = new System.Drawing.Size(75, 23);
+            this.btReadPorts.TabIndex = 5;
+            this.btReadPorts.Text = "Read Ports";
+            this.btReadPorts.UseVisualStyleBackColor = true;
+            this.btReadPorts.Click += new System.EventHandler(this.btReadPorts_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1260,6 +1272,7 @@
         private System.Windows.Forms.TextBox tbSuspFR;
         private System.Windows.Forms.ProgressBar pbSuspFR;
         private System.Windows.Forms.ToolStripMenuItem tsmiConvertLog;
+        private System.Windows.Forms.Button btReadPorts;
     }
 }
 
