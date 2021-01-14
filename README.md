@@ -1,3 +1,4 @@
+<body>
 <H1> # CarManGUI </H1>
 
 <H3> O Projeto </H3>
@@ -38,3 +39,4 @@ A mesma abre no Raspberry mas por algum motivo, depois de mudar o método de uti
  </p>
  
 <H3> Para implementar </H3>
+</body>
