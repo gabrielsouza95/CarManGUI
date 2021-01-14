@@ -1,3 +1,16 @@
+<head>
+<style>
+body {
+ background-color: black;
+ }
+
+p {
+ color: white;
+}
+
+</style>
+</head> 
+
 <body>
 <H1> # CarManGUI </H1>
 
