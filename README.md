@@ -6,25 +6,27 @@
 <p>Projeto está sendo desenvolvido em parceria com a FEB Racing, equipe de fórmula SAE da Unesp, para a construção de um equipamento para o carro da equipe.</p>
 
 <p>Em resumo, ele consiste de:
-  - sensores colocados no carro;
-  - gravação dos dados coletados dos sensores em arquivo para posterior análise;
-  - mostrar os dados para o piloto através de uma interface com o usuário e, futuramente, para a equipe nos boxes com possibilidade de comunicação simples entre a equipe e o piloto: - Por exemplo, mostrar para o piloto que foi dada bandeira de cor x.
-  - um plotter para visualização dos dados e análise.
+ <ol>
+  <li>sensores colocados no carro;</li>
+  <li>gravação dos dados coletados dos sensores em arquivo para posterior análise;</li>
+  <li>mostrar os dados para o piloto através de uma interface com o usuário e, futuramente, para a equipe nos boxes com possibilidade de comunicação simples entre a equipe e o piloto:<ol><li> - Por exemplo, mostrar para o piloto que foi dada bandeira de cor x.</li></ol></li>
+  <li>um plotter para visualização dos dados e análise.</li>
+ </ol>
 </p>
 
 <H3> O Hardware </H3> 
    
 <p>O  hardware do projeto atualmente é constituido de:
-  - 1 Arduino Mega;
-  - 1 tela OLED de 0,96" que comunica por I2C;
-  - 3 botões ligados com um pullup comum;
-  - 1 Raspberry;
-  - 1 tela touch 3,5", encaixa por cima do Raspberry, habilitada via raspibian;
-  - 1 multiplexador 4052.
+  <li>1 Arduino Mega;</li>
+  <li>1 tela OLED de 0,96" que comunica por I2C;</li>
+  <li>3 botões ligados com um pullup comum;</li>
+  <li>1 Raspberry;</li>
+  <li>1 tela touch 3,5", encaixa por cima do Raspberry, habilitada via raspibian;</li>
+  <li>1 multiplexador 4052.</li>
 </p>  
   
 <p>Está sendo implementado a adição de:
-  - 4 ATtiny85 
+  <li>4 ATtiny85. </li>
 </p>
 
 <H3> O Software </H3>
