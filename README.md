@@ -31,7 +31,9 @@
 
 <H3> O Software </H3>
 
-<p>O </p>
+<p>Na implementação do projeto está sendo utilizado C# para a interface utilizando um projeto .NET Framework 4 e no futuro será utilizado o .NET Core 3 que tem compatibilidade com o Raspibian.</p>
+<p>![Screenshot](teste_interface_csharpv2.x_animado.gif)</p>
+<p>Python, R, C++(Arduino) </p>
 
 <H3> O que está acontecendo </H3>
 
