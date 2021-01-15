@@ -3,7 +3,7 @@
 
 <H3> O Projeto </H3>
  
-<p>Projeto está sendo desenvolvido em parceria com a FEB Racing, equipe de fórmula SAE da Unesp, para a construção de um equipamento para o carro da equipe.</p>
+<p>Projeto está sendo desenvolvido em parceria com a FEB Racing(<a href="https://www.facebook.com/equipefebracing">face</a>)(<a href="https://www.instagram.com/febracing/?hl=pt">insta</a>), equipe de fórmula SAE da Unesp, para a construção de um equipamento para o carro da equipe.</p>
 
 <p>Em resumo, ele consiste de:
  <ol>
