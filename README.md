@@ -32,8 +32,8 @@
 <H3> O Software </H3>
 
 <p>Na implementação do projeto está sendo utilizado C# para a interface utilizando um projeto .NET Framework 4 e no futuro será utilizado o .NET Core 3 que tem compatibilidade com o Raspibian.</p>
-<span style="max-width:50%;max-height:50%;"><img style="max-width:50%; max-height:50%;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/teste_interface_csharpv2.x_animado.gif" alt="teste_interface_csharpv2.x_animado">
-</span><figcaption>Caption goes here</figcaption>
+<span><img style="max-width:50%; max-height:50%;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/teste_interface_csharpv2.x_animado.gif" alt="teste_interface_csharpv2.x_animado">
+</span><figcaption>GIF mostra o teste da janela em C#, com um gráfico 2D implementado sendo printado os valores no gráfico de pontos de 2 eixos apenas.</figcaption>
 <p>Python, R, C++(Arduino) </p>
 
 <H3> O que está acontecendo </H3>
