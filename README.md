@@ -47,7 +47,8 @@
 <p>Na implementação do projeto está sendo utilizado C# para a interface utilizando um projeto .NET Framework 4 e o <a href="https://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives">Mono</a> e no futuro será utilizado o .NET Core 3 que tem compatibilidade com o Raspibian.</p>
 <span><img style="max-width:50%; max-height:50%;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/teste_interface_csharpv2.x_animado.gif" alt="teste_interface_csharpv2.x_animado">
 </span><figcaption>GIF mostra o teste da janela em C#, com um gráfico 2D implementado sendo printado os valores de 2 dos 3 eixos do acelerômetro no gráfico de pontos enquanto balanço o sensor.</figcaption>
-<p>Python, R, C++(Arduino, Processing, tentativa de script para comunicação serial). </p>
+<p> </p>
+<p>Também está sendo utilizado no projetoPython, R, C++(Arduino, Processing, tentativa de script para comunicação serial). </p>
 
 <H3> O que está acontecendo </H3>
 
@@ -66,6 +67,6 @@ A mesma abre no Raspberry mas por algum motivo, depois de mudar o método de uti
 </p>
 <p>- Como mencionado na parte de software, provavelmente antes da implementação com JS(JonhyFive,Node,React,ReactNative) será implementada uma versão utilizando o .NET Core 3.0 que é garantido a compatibilidade com o Raspibian, apesar de não ser a ferramenta mais nova.
 </p>
-<p>- Os ATtiny85 que serão implementados, vão ser utilizados como sensores de velocidade, ficando entre o Arduino e o sensor hall, para fazer a correta contagem de pulsos por intervalo de tempo. Como o Aruino está hoje, caso tentássemos utilizar os 4 sensores hall diretamente neles, por conta de como é calculado a velocidade da roda por amostragem de pulsos por tempo, o Arduino ficaria com uma resposta muito ruim(<a href="https://forum.arduino.cc/index.php?topic=519300.0">veja aqui</a>), por utilizar rotinas de interrupção do processador para tal tarefa. Então a ideia é que o ATtiny85 fique ligado como um slave no barramento I2C (<a href="https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/">veja aqui</a>) e quando o Arduino solicitar, ele já envie a velocidade atual da roda, deixando o cálculo com interrupções diretamente no ATtyny85, que tem suporte para tal.
+<p>- Os ATtiny85 que serão implementados, vão ser utilizados como sensores de velocidade, ficando entre o Arduino e o sensor hall, para fazer a correta contagem de pulsos por intervalo de tempo. Como o Aruino está hoje, caso tentássemos utilizar os 4 sensores hall diretamente neles, por conta de como é calculado a velocidade da roda por amostragem de pulsos por tempo, o Arduino ficaria com uma resposta muito ruim (<a href="https://forum.arduino.cc/index.php?topic=519300.0">veja aqui</a>), por utilizar rotinas de interrupção do processador para tal tarefa. Então a ideia é que o ATtiny85 fique ligado como um slave no barramento I2C (<a href="https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/">veja aqui</a>) e quando o Arduino solicitar, ele já envie a velocidade atual da roda, deixando o cálculo com interrupções diretamente no ATtyny85, que tem suporte para tal.
 </p>
 </body>
