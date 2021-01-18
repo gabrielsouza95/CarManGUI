@@ -20,12 +20,22 @@
 <H3> O Hardware </H3> 
    
 <p>O  hardware do projeto atualmente é constituido de:
+ <ol>
   <li>1 Arduino Mega;</li>
+  <li>Alguns sensores, sendo eles:</li>
+  <ol>
+   <li>3 acelerômetros giroscópios MPU6050</li>
+   <li>4 sensores de temperatura por infra vermelho MLX90614</li>
+   <li>4 sensores de efeito hall KY003</li>
+   <li>4 potênciometros para verificação de curso de suspensão</li>
+   <li>1 sensor de pressão de linha de freio</li>
+  </ol>
   <li>1 tela OLED de 0,96" que comunica por I2C;</li>
   <li>3 botões ligados com um pullup comum;</li>
   <li>1 Raspberry;</li>
   <li>1 tela touch 3,5", encaixa por cima do Raspberry, habilitada via raspibian;</li>
   <li>1 multiplexador 4052.</li>
+ </ol>
 </p>  
   
 <p>Está sendo implementado a adição de:
@@ -43,7 +53,12 @@
 
 
 <p>- Atualmente o projeto está com uma janela desenvolvida em C# para fazer a interface com o usurário através da tela de 3,5" do Raspberry, fazendo a inicialização da comunicação e o término da mesma com o arduino; controla quando começa a gravar os dados, dando feedback que está gravando e sendo possível parar a gravação em qualquer momento*; mostra os dados dos sensores em telas separadas para uma melhor visualização.
+</p>
+<p>
 A mesma abre no Raspberry mas por algum motivo, depois de mudar o método de utilizar uma thread manualmente, para utilizar eventos da porta serial do objeto serial do C#, ele não comunicou mais com o Arduino. Pelo que já descobri, o software de compatibilidade Mono que estou utilizando no Raspberry não tem implementado a compatibilidade dos eventos de porta serial.
+</p>
+ 
+ <p>- Como não funcionou no Raspberry corretamente a janela implementada em C#, estou utilizando uma tela OLED de 0,96" para mostrar ao piloto as informações desejadas, com 2 botões para a seleção do menu, um vai "para frente" nas opções e o outro volta. O terceiro botão é para controlar quando o Arduino deve começar a gravar ou não. Estaria utilizando um shield de cartão SD mas o mesmo não funcionou também
  </p>
  
 <H3> Para implementar </H3>
