@@ -49,4 +49,6 @@ A mesma abre no Raspberry mas por algum motivo, depois de mudar o método de uti
 <H3> Para implementar </H3>
 <p>- Desejo utilizar JonhyFive juntamente com Node para comunicar entre raspberry e arduino, além de estar estudando a possibilidade de fazer uma interface com React e já deixar pronto para ser utilizado via internet o acesso ao carro pelo computador nos boxes também com uma página web em React ou até mesmo um app no celular com React Native.
 </p>
+<p>- Como mencionado na parte de software, provavelmente antes da implementação com JS(JonhyFive,Node,React,ReactNative) será implementada uma versão utilizando o .NET Core 3.0 que é garantido a compatibilidade com o Raspibian, apesar de não ser a ferramenta mais nova.
+</p>
 </body>
