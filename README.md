@@ -5,6 +5,9 @@
  
 <p>Projeto está sendo desenvolvido em parceria com a FEB Racing(<a href="https://www.facebook.com/equipefebracing">face</a>)(<a href="https://www.instagram.com/febracing/?hl=pt">insta</a>), equipe de fórmula SAE da Unesp, para a construção de um equipamento para o carro da equipe.</p>
 
+<span><img style="max-width:50%; max-height:50%;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/primeiro_teste_no_carro.jpeg" alt="Primeiro teste no carro">
+</span>
+
 <p>Em resumo, ele consiste de:
  <ol>
   <li>sensores colocados no carro;</li>
@@ -31,17 +34,19 @@
 
 <H3> O Software </H3>
 
-<p>Na implementação do projeto está sendo utilizado C# para a interface utilizando um projeto .NET Framework 4 e no futuro será utilizado o .NET Core 3 que tem compatibilidade com o Raspibian.</p>
+<p>Na implementação do projeto está sendo utilizado C# para a interface utilizando um projeto .NET Framework 4 e o <a href="https://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives">Mono</a> e no futuro será utilizado o .NET Core 3 que tem compatibilidade com o Raspibian.</p>
 <span><img style="max-width:50%; max-height:50%;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/teste_interface_csharpv2.x_animado.gif" alt="teste_interface_csharpv2.x_animado">
-</span><figcaption>GIF mostra o teste da janela em C#, com um gráfico 2D implementado sendo printado os valores no gráfico de pontos de 2 eixos apenas.</figcaption>
-<p>Python, R, C++(Arduino) </p>
+</span><figcaption>GIF mostra o teste da janela em C#, com um gráfico 2D implementado sendo printado os valores de 2 dos 3 eixos do acelerômetro no gráfico de pontos enquanto balanço o sensor.</figcaption>
+<p>Python, R, C++(Arduino, Processing, tentativa de script para comunicação serial). </p>
 
 <H3> O que está acontecendo </H3>
 
 
 <p>- Atualmente o projeto está com uma janela desenvolvida em C# para fazer a interface com o usurário através da tela de 3,5" do Raspberry, fazendo a inicialização da comunicação e o término da mesma com o arduino; controla quando começa a gravar os dados, dando feedback que está gravando e sendo possível parar a gravação em qualquer momento*; mostra os dados dos sensores em telas separadas para uma melhor visualização.
-A mesma abre no Raspberry mas por algum motivo, depois de mudar o método de utilizar uma thread manualmente, para utilizar eventos da porta serial do objeto serial do C#, ele não comunicou mais com o Arduino. Pelo que já descobri
+A mesma abre no Raspberry mas por algum motivo, depois de mudar o método de utilizar uma thread manualmente, para utilizar eventos da porta serial do objeto serial do C#, ele não comunicou mais com o Arduino. Pelo que já descobri, o software de compatibilidade Mono que estou utilizando no Raspberry não tem implementado a compatibilidade dos eventos de porta serial.
  </p>
  
 <H3> Para implementar </H3>
+<p>- Desejo utilizar JonhyFive juntamente com Node para comunicar entre raspberry e arduino, além de estar estudando a possibilidade de fazer uma interface com React e já deixar pronto para ser utilizado via internet o acesso ao carro pelo computador nos boxes também com uma página web em React ou até mesmo um app no celular com React Native.
+</p>
 </body>
