@@ -21,25 +21,26 @@
    
 <p>O  hardware do projeto atualmente é constituido de:
  <ol>
-  <li>1 Arduino Mega;</li>
+  <li>1 <a href="https://www.arduino.cc/en/Guide/ArduinoMega2560">Arduino Mega</a>;</li>
   <li>Alguns sensores, sendo eles:</li>
   <ol>
-   <li>3 acelerômetros giroscópios MPU6050</li>
-   <li>4 sensores de temperatura por infra vermelho MLX90614</li>
-   <li>4 sensores de efeito hall KY003</li>
+   <li>3 acelerômetros giroscópios <a href="https://www.letscontrolit.com/wiki/index.php/MPU6050">MPU6050</a></li>
+   <li>4 sensores de temperatura por infra vermelho <a href="https://forum.arduino.cc/index.php?topic=577921.0">MLX90614</a></li>
+   <li>4 sensores de efeito hall <a href="https://www.instructables.com/Arduino-Magnetic-FIELD-Detector-Using-the-KY-003-o/">KY003</a></li>
    <li>4 potênciometros para verificação de curso de suspensão</li>
    <li>1 sensor de pressão de linha de freio</li>
   </ol>
-  <li>1 tela OLED de 0,96" que comunica por I2C;</li>
+  <li>1 <a href="https://randomnerdtutorials.com/guide-for-oled-display-with-arduino/">tela OLED de 0,96"</a> que comunica por I2C;</li>
   <li>3 botões ligados com um pullup comum;</li>
-  <li>1 Raspberry;</li>
-  <li>1 tela touch 3,5", encaixa por cima do Raspberry, habilitada via raspibian;</li>
-  <li>1 multiplexador 4052.</li>
+  <li>1 <a href="https://circuitdigest.com/simple-raspberry-pi-projects-for-beginners">Raspberry</a>;</li>
+  <li>1 <a href="https://www.youtube.com/watch?v=Fj3wq98pd20">tela touch 3,5"</a>, encaixa por cima do Raspberry, habilitada via raspibian;</li>
+  <li>1 multiplexador 4052;</li>
+  <li>1 adaptador <a href="https://www.electronicshub.org/arduino-mcp2515-can-bus-tutorial/">MCP2515</a>.</li>
  </ol>
 </p>  
   
 <p>Está sendo implementado a adição de:
-  <li>4 ATtiny85. </li>
+  <li>4 <a href="https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/">ATtiny85</a>. </li>
 </p>
 
 <H3> O Software </H3>
@@ -65,8 +66,12 @@ A mesma abre no Raspberry mas por algum motivo, depois de mudar o método de uti
 <H3> Para implementar </H3>
 <p>- Desejo utilizar JonhyFive juntamente com Node para comunicar entre raspberry e arduino, além de estar estudando a possibilidade de fazer uma interface com React e já deixar pronto para ser utilizado via internet o acesso ao carro pelo computador nos boxes também com uma página web em React ou até mesmo um app no celular com React Native.
 </p>
-<p>- Como mencionado na parte de software, provavelmente antes da implementação com JS(JonhyFive,Node,React,ReactNative) será implementada uma versão utilizando o .NET Core 3.0 que é garantido a compatibilidade com o Raspibian, apesar de não ser a ferramenta mais nova.
+<p>- Como mencionado na parte de software, provavelmente antes da implementação com JS(<a href="http://johnny-five.io/">JonhyFive</a>,<a href ="https://www.instructables.com/NodeJs-and-Arduino/">Node</a>,<a href="https://awot.net/en/guide/tutorial.html">React</a>,ReactNative) será implementada uma versão utilizando o .NET Core 3.0 que é garantido a compatibilidade com o Raspibian, apesar de não ser a ferramenta mais nova.
 </p>
 <p>- Os ATtiny85 que serão implementados, vão ser utilizados como sensores de velocidade, ficando entre o Arduino e o sensor hall, para fazer a correta contagem de pulsos por intervalo de tempo. Como o Aruino está hoje, caso tentássemos utilizar os 4 sensores hall diretamente neles, por conta de como é calculado a velocidade da roda por amostragem de pulsos por tempo, o Arduino ficaria com uma resposta muito ruim (<a href="https://forum.arduino.cc/index.php?topic=519300.0">veja aqui</a>), por utilizar rotinas de interrupção do processador para tal tarefa. Então a ideia é que o ATtiny85 fique ligado como um slave no barramento I2C (<a href="https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/">veja aqui</a>) e quando o Arduino solicitar, ele já envie a velocidade atual da roda, deixando o cálculo com interrupções diretamente no ATtyny85, que tem suporte para tal.
+</p>
+<p>- Estou estudando a possibilidade de migrar o projeto direto para um <a href="https://github.com/esp8266/Arduino">ESP8266</a> para utilizar não somente a função WiFi, em conjunto com o Raspberry, mas também para melhorar a velocidade do hardware responsável pela captura de dados dos sensores, assim tendo uma melhor amostragem dos dados dos sensores, também sendo possível adicionar mais captura de dados, como o adaptador CAN e mais sensores.
+</p>
+<p>- Quero incluir no equipamento a leitura do barramento CAN, que no caso estou tentando fazer funcionar com o adaptador <a href="https://www.electronicshub.org/arduino-mcp2515-can-bus-tutorial/">MCP2515</a> mas que, até o momento, não consegui fazer a inicialização do adaptador para processguir com a leitura dos dados da injeção eletrônica para ser associada ao log de dados dos sensores adicionados pelo projeto.
 </p>
 </body>
