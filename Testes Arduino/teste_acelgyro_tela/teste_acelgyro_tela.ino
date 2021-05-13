@@ -376,7 +376,7 @@ void setup() {
   Wire.begin(); 
 
   //initializeMPU(sensor_1 + 1, MPU[sensor_1]);
-  initializeMPU(sensor_2 + 1, MPU[sensor_2]);
+  //initializeMPU(sensor_2 + 1, MPU[sensor_2]);
   //initializeMPU(sensor_3 + 1, MPU[sensor_3]);
   
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  
@@ -396,7 +396,7 @@ void loop() {
   else
     digitalWrite(LED_PIN, LOW);
 
-  readSensorsData();  
+  //readSensorsData();  
 
   Serial.println(opcao);  
   display.clearDisplay();
