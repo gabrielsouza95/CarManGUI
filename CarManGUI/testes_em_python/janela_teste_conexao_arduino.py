@@ -63,32 +63,39 @@ def tkThreadingTest():
     from time import sleep
 
     class UnitTestGUI:
-        #variable related to serial port
-        ser = None # = serial.Serial('COM4', 9600)#('/dev/ttyACM0', 9600) segundo valor é a iniciação da comunicação serial no raspberry
-            
+        
         def __init__( self, master ):
             self.master = master
-            master.title( "Threading Test" )
-            master.geometry('420x320')
+            self.master.title( "CarManGUI" )
+            self.master.geometry('420x320')
+            
+            ##button position related
+            self.buttonYLine = 285
 
-             ##serial releated
+            ##serial releated
             self.runComunication = 0
+            #variable related to serial port
+            self.ser = None # = serial.Serial('COM4', 9600)#('/dev/ttyACM0', 9600) segundo valor é a iniciação da comunicação serial no raspberry        
+
+            ##file related
+            self.saveFile = False # variável que vai indicar se tem que gravar o arquivo ou não quando executar a thread da serial
+            self.logFile = None 
 
             self.serialButton = Button( 
                 self.master, text="Conect Serial", command=self.onSerialClicked )
-            self.serialButton.place(x = 10, y = 226)
+            self.serialButton.place(x = 10, y = self.buttonYLine)
 
             self.arduinoButton = Button( 
                 self.master, text="Conect Arduino", command=self.onConectedClicked )
-            self.arduinoButton.place(x = 90, y = 226)
+            self.arduinoButton.place(x = 90, y = self.buttonYLine)
 
             self.recButton = Button( 
                 self.master, text="Rec", command=self.onRecClicked )
-            self.recButton.place(x = 185, y = 226)
+            self.recButton.place(x = 185, y = self.buttonYLine)
 
             self.cancelButton = Button( 
                 self.master, text="Stop", command=self.onStopClicked )
-            self.cancelButton.place(x = 240, y = 226)
+            self.cancelButton.place(x = 240, y = self.buttonYLine)
 
             self.receviedInfo = StringVar()
             self.infoLabel = Label( master, textvariable=self.receviedInfo) 
@@ -112,7 +119,7 @@ def tkThreadingTest():
         def onSerialClicked( self ):
             print ("onSerialClicked")
             try: 
-                if self.ser == None or self.ser :
+                if self.ser == None : # or self.ser : #TO DO : não esquecer de checar problemas com a serial também além do None
                     self.bgTaskSerial.start()
             except: pass
 
@@ -136,13 +143,14 @@ def tkThreadingTest():
             except: pass 
 
         def serialStartConection ( self, isRunningFunc = None ) : #myLongProcess( self, isRunningFunc=None ) : using the long process as the serial thread handler
-            print ("Starting Serial connection...")
+            self.onSerialThreadUpdate ( "Starting Serial connection..." )
             try :
                 self.ser = serial.Serial('COM4', 9600) #('/dev/ttyACM0', 9600) 
                 if(self.ser.isOpen() == False):
-                    self.ser.open()     
+                    self.ser.open()
+                    self.onSerialThreadUpdate ( "Conected to Arduino..." )     
             except :
-                print("Error serial conection")        
+                self.onSerialThreadUpdate ( "Error serial conection" )     
 
         def serialConectionRead ( self, isRunningFunc = None  ) :
             self.keepGoing = 1
@@ -151,7 +159,9 @@ def tkThreadingTest():
             while self.keepGoing == 1 :
                 try:
                     if isRunningFunc() :
-                        self.onSerialThreadUpdate(self.ser.readline())
+                        self.lineRead = (self.ser.readline()).decode() #precisa do decode se não ele retorna b'{valores}'
+                        self.onSerialThreadUpdate(self.lineRead)
+                        self.onThreadUpdateCheckFileWrite(self.lineRead)
                     else :
                         self.onSerialThreadUpdate ( "Serial connection stopped..." )
                         self.ser.write(str.encode("0#"))
@@ -165,15 +175,26 @@ def tkThreadingTest():
             try: 
                 if isRunningFunc() :
                     self.onSerialThreadUpdate ( "Sending request to start/stops rec..." )
-                    print("Sending request to start/stops rec...")
                     self.ser.write(str.encode("2#"))
+
+                    if self.saveFile == True :
+                        self.saveFile = False
+                    else :
+                        self.saveFile = True    
             except : pass        
 
         def onSerialThreadUpdate( self, status ) : #onMyLongProcessUpdate( self, status ) :
             print( str(status) ) #print ("Process Update: %s" % (status))
             self.receviedInfo.set( str(status) ) #self.statusLabelVar.set( str.encode(status) )
             self.infoLabel.place( x = 20, y = 20)
-            
+
+        def onThreadUpdateCheckFileWrite( self, status ) :
+            print( "Checking if write file" )
+            if self.saveFile == True :
+                self.logFile = open("logJanPy.txt","a+")
+                self.logFile.write( str(status) + "\r" )
+                self.logFile.close()
+
     root = Tk()    
     gui = UnitTestGUI( root )
     root.protocol( "WM_DELETE_WINDOW", gui.close )
@@ -181,46 +202,3 @@ def tkThreadingTest():
 
 if __name__ == "__main__": 
     tkThreadingTest()
-
-
-
-# def conect_arduino():
-#   global runComunication
-#   global receviedInfo
-  
-#   if runComunication == 0 :
-#     runComunication = 1
-#     #receviedInfo.set("1")
-#     #infoLabel.place( x = 20, y = 20 )
-#   else:
-#     runComunication = 0
-#     #receviedInfo.set("0")
-#     #infoLabel.place( x = 20, y = 20 )
-
-
-# def rec_log():
-#   global runComunication
-#   global receviedInfo
-  
-#   if runComunication == 0 :
-#     print("Sendig single way handshake to Arduino")
-#     ser.write("2#")
-#     runComunication = 1
-#   else
-#     ser.write("2#")  
-#     runComunication = 0
-
-# def readser():
-#   global runComunication
-#   global receviedInfo
-  
-#   if runComunication == 1 :
-#     receviedInfo.set(ser.readline())
-#     infoLabel.place( x = 20, y = 20 )
-#     after(1,readser)
-#   else :
-#     receviedInfo.set("Not Conected")
-#     infoLabel.place( x = 20, y = 20 )
-    
-# def exitProgram():
-#     sys.exit()  

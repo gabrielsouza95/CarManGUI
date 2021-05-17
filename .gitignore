@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /CarManGUI/Form1 - Copy.cs
+CarManGUI/testes_em_python/logJanPy.txt
