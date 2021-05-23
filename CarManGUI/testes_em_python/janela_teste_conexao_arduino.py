@@ -175,12 +175,7 @@ def tkThreadingTest():
             try: 
                 if isRunningFunc() :
                     self.onSerialThreadUpdate ( "Sending request to start/stops rec..." )
-                    self.ser.write(str.encode("2#"))
-
-                    if self.saveFile == True :
-                        self.saveFile = False
-                    else :
-                        self.saveFile = True    
+                    self.ser.write(str.encode("2#"))  
             except : pass        
 
         def onSerialThreadUpdate( self, status ) : #onMyLongProcessUpdate( self, status ) :
@@ -190,6 +185,22 @@ def tkThreadingTest():
 
         def onThreadUpdateCheckFileWrite( self, status ) :
             print( "Checking if write file" )
+            self.firstElement = 0
+            self.lastElement = -1
+            self.conectionElements = str(status).split('_')
+            self.lastConectElement = []
+            print( 'Nro elementos: ' + str(len(self.conectionElements)) + ' antes de verificar primeiro caracter e se grava ou não.')
+            if not str(self.conectionElements[self.firstElement]) : #Se ele conseguir fazer o split e o primeiro elemento for vazio, quer dizer que está recebendo certo a mensagem do arduino pela serial
+                self.lastConectElement = self.conectionElements[self.lastElement]
+                del self.conectionElements[:]
+                self.conectionElements = str(self.lastConectElement).split(':')
+                if str(self.conectionElements[self.firstElement]) == '0' : 
+                    print( 'Nro elementos: ' + str(len(self.conectionElements)) + ' sem gravar log')
+                    self.saveFile = False
+                else :
+                    print( 'Nro elementos: ' + str(len(self.conectionElements)) + ' gravando log' )
+                    self.saveFile = True  
+
             if self.saveFile == True :
                 self.logFile = open("logJanPy.txt","a+")
                 self.logFile.write( str(status) + "\r" )
