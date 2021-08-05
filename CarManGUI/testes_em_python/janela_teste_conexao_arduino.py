@@ -70,7 +70,7 @@ def tkThreadingTest():
             self.master.geometry('420x320')
             
             ##button position related
-            self.buttonYLine = 285
+            self.buttonYLine = 85
 
             ##serial releated
             self.runComunication = 0
@@ -145,7 +145,7 @@ def tkThreadingTest():
         def serialStartConection ( self, isRunningFunc = None ) : #myLongProcess( self, isRunningFunc=None ) : using the long process as the serial thread handler
             self.onSerialThreadUpdate ( "Starting Serial connection..." )
             try :
-                self.ser = serial.Serial('COM4', 9600) #('/dev/ttyACM0', 9600) 
+                self.ser = serial.Serial('/dev/ttyACM0', 9600) #('COM4', 9600)('/dev/ttyACM0', 9600) 
                 if(self.ser.isOpen() == False):
                     self.ser.open()
                     self.onSerialThreadUpdate ( "Conected to Arduino..." )     
@@ -187,6 +187,7 @@ def tkThreadingTest():
             print( "Checking if write file" )
             self.firstElement = 0
             self.lastElement = -1
+            self.amountOfArduinoData = 29
             self.conectionElements = str(status).split('_')
             self.lastConectElement = []
             print( 'Nro elementos: ' + str(len(self.conectionElements)) + ' antes de verificar primeiro caracter e se grava ou não.')
@@ -194,16 +195,17 @@ def tkThreadingTest():
                 self.lastConectElement = self.conectionElements[self.lastElement]
                 del self.conectionElements[:]
                 self.conectionElements = str(self.lastConectElement).split(':')
-                if str(self.conectionElements[self.firstElement]) == '0' : 
-                    print( 'Nro elementos: ' + str(len(self.conectionElements)) + ' sem gravar log')
+                if str(self.conectionElements[self.firstElement]) == '0' : #Lê o primeiro elemento que dita se grava o log ou não
                     self.saveFile = False
                 else :
-                    print( 'Nro elementos: ' + str(len(self.conectionElements)) + ' gravando log' )
-                    self.saveFile = True  
+                    self.saveFile = True
+                print(str(self.conectionElements[self.lastElement]))  
 
             if self.saveFile == True :
-                self.logFile = open("logJanPy.txt","a+")
-                self.logFile.write( str(status) + "\r" )
+                self.logFile = open('/home/pi/Desktop/logJanPy.txt','a+') #'.\longJanPy.txt'
+                self.logFile.write( str(status) + '\r' )
+                if not len(self.conectionElements) == self.amountOfArduinoData :
+                    self.logFile.write(' quantidade de informações ' + str(len(self.conectionElements)) + ' difere da quantidade esperada. \n\r')
                 self.logFile.close()
 
     root = Tk()    

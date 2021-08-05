@@ -242,3 +242,4 @@ ModelManifest.xml
 .fake/
 /CarManGUI/Form1 - Copy.cs
 CarManGUI/testes_em_python/logJanPy.txt
+Testes Arduino/teste_serialSave_StepperAcel/teste_serialSave_StepperAcel.ino
