@@ -71,7 +71,8 @@ Inclusive do teste antes e depois da instalação da barra estabilizadora, que n
 
 <p>
  - Foi feita uma base para facilitar os testes de bancada que estão sendo feitos atualmente, como pode ser visto nas duas próximas imagens:
-<\p>
+</p>
+ 
 <span><img style="max-width:50px; max-height:50px;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/base_teste_v1.1_view2.jpeg" alt="Vista frontal da base de testes">
 </span>
 <span><img style="max-width:50px; max-height:50px;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/base_teste_v1.1_view6.jpeg" alt="Vista superior da base de testes">
@@ -79,18 +80,22 @@ Inclusive do teste antes e depois da instalação da barra estabilizadora, que n
  
 <p>
  - Foi feito o aviso de bandeiras que poderá ser dado dos boxes para informar o piloto de alguma condição que precisa de atenção. Com essa implementação também podem ser feitos outros avisos que sejam necessários serem passados para o piloto. Na imagem também é possível ver como era mostrada as informações do acelerômetro:
-<\p>
+</p>
+ 
 <span><img style="max-width:50px; max-height:50px;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/teste_alerta_bandeiras.gif" alt="Teste do alerta de bandeiras">
 </span>
  
  <p>
  - Foi melhorado a interface dos dados do acelerômetro para que seja mais compreensível para o piloto. Foi escolhido os eixos de aceleração laterais e pra frente e para trás na implementação de como o ponto deve se deslocar. Me inspirei no display de força G do Gran Turismo para fazê-lo. Na imagem a seguir é possível ver a primeira versão:
-<\p>
+</p>
+ 
 <span><img style="max-width:50px; max-height:50px;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/teste_UI_acelerometro_1.0.gif" alt="Primeira versão da UI do acelerômetro">
 </span>
+ 
  <p>
  - Nessa próxima imagem é possível ver a segunda versão da interface:
-<\p>
+</p>
+ 
  <span><img style="max-width:50px; max-height:50px;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/teste_UI_acelerometro_1.1.gif" alt="Segunda versão da UI do acelerômetro">
 </span>
  
