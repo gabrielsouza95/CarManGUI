@@ -8,14 +8,14 @@ Projeto está sendo desenvolvido em parceria com a FEB Racing([facebook](https:/
 ![Primeiro teste no carro](static%2Fprimeiro_teste_no_carro.jpeg)
 
 
-<p>Em resumo, ele consiste de:
- <ol>
-  <li>sensores colocados no carro;</li>
-  <li>gravação dos dados coletados dos sensores em arquivo para posterior análise;</li>
-  <li>mostrar os dados para o piloto através de uma interface com o usuário e, futuramente, para a equipe nos boxes com possibilidade de comunicação simples entre a equipe e o piloto:<ol><li> - Por exemplo, mostrar para o piloto que foi dada bandeira de cor x.</li></ol></li>
-  <li>um plotter para visualização dos dados e análise.</li>
- </ol>
-</p>
+Em resumo, ele consiste de:
+
+1. sensores colocados no carro;
+2. gravação dos dados coletados dos sensores em arquivo para posterior análise;
+3. mostrar os dados para o piloto através de uma interface com o usuário e, futuramente, para a equipe nos boxes com possibilidade de comunicação simples entre a equipe e o piloto:
+    - Por exemplo, mostrar para o piloto que foi dada bandeira de cor x.
+4. um plotter para visualização dos dados e análise.
+
 
 <H3> O Hardware </H3> 
    
