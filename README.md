@@ -46,13 +46,17 @@ Está sendo implementado a adição de:
   - 4 [ATtiny85](https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/).
 
 
-<H3> O Software </H3>
+### O Software
 
-<p>Na implementação do projeto está sendo utilizado C# para a interface utilizando um projeto .NET Framework 4 e o <a href="https://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives">Mono</a> e no futuro será utilizado o .NET Core 3 que tem compatibilidade com o Raspibian.</p>
-<span><img style="max-width:50%; max-height:50%;" src="https://github.com/gabrielsouza95/CarManGUI/blob/master/teste_interface_csharpv2.x_animado.gif" alt="teste_interface_csharpv2.x_animado">
-</span><figcaption>GIF mostra o teste da janela em C#, com um gráfico 2D implementado sendo printado os valores de 2 dos 3 eixos do acelerômetro no gráfico de pontos enquanto balanço o sensor.</figcaption>
-<p> </p>
-<p>Também está sendo utilizado no projeto Python, R, C++(Arduino, Processing, tentativa de script para comunicação serial). </p>
+Na implementação do projeto está sendo utilizado C# para a interface utilizando um projeto .NET Framework 4 e o [Mono](https://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives) e no futuro será utilizado o .NET Core 3 que tem compatibilidade com o Raspibian.
+
+
+![teste_interface_csharpv2.x_animado](static%2Fteste_interface_csharpv2.x_animado.gif)
+
+__GIF mostra o teste da janela em C#, com um gráfico 2D implementado sendo printado os valores de 2 dos 3 eixos do acelerômetro no gráfico de pontos enquanto balanço o sensor.__
+
+Também está sendo utilizado no projeto Python, R, C++(Arduino, Processing, tentativa de script para comunicação serial).
+
 
 <H3> O que está acontecendo </H3>
 
