@@ -13,7 +13,8 @@ Em resumo, ele consiste de:
 1. sensores colocados no carro;
 2. gravação dos dados coletados dos sensores em arquivo para posterior análise;
 3. mostrar os dados para o piloto através de uma interface com o usuário e, futuramente, para a equipe nos boxes com possibilidade de comunicação simples entre a equipe e o piloto:
-    - Por exemplo, mostrar para o piloto que foi dada bandeira de cor x.
+   
+    i. Por exemplo, mostrar para o piloto que foi dada bandeira de cor x.
 4. um plotter para visualização dos dados e análise.
 
 
