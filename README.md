@@ -42,9 +42,9 @@ O hardware do projeto atualmente é constituido de:
 8. 1 adaptador [MCP2515](https://www.electronicshub.org/arduino-mcp2515-can-bus-tutorial/).
  
   
-<p>Está sendo implementado a adição de:
-  <li>4 <a href="https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/">ATtiny85</a>. </li>
-</p>
+Está sendo implementado a adição de:
+  - 4 [ATtiny85](https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/).
+
 
 <H3> O Software </H3>
 
