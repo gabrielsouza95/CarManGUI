@@ -4,11 +4,9 @@
  
 Projeto está sendo desenvolvido em parceria com a FEB Racing([facebook](https://www.facebook.com/equipefebracing))([instagram](https://www.instagram.com/febracing/?hl=pt)), equipe de fórmula SAE da Unesp, para a construção de um equipamento para o carro da equipe.
 
-<span>
-    <img style="max-width:50px; max-height:50px;" 
-    src="https://github.com/gabrielsouza95/CarManGUI/blob/master/primeiro_teste_no_carro.jpeg" 
-    alt="Primeiro teste no carro">
-</span>
+
+![Primeiro teste no carro](static%2Fprimeiro_teste_no_carro.jpeg)
+
 
 <p>Em resumo, ele consiste de:
  <ol>
