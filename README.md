@@ -17,27 +17,30 @@ Em resumo, ele consiste de:
 4. um plotter para visualização dos dados e análise.
 
 
-<H3> O Hardware </H3> 
+### O Hardware
    
-<p>O  hardware do projeto atualmente é constituido de:
- <ol>
-  <li>1 <a href="https://www.arduino.cc/en/Guide/ArduinoMega2560">Arduino Mega</a>;</li>
-  <li>Alguns sensores, sendo eles:</li>
-  <ol>
-   <li>3 acelerômetros giroscópios <a href="https://www.letscontrolit.com/wiki/index.php/MPU6050">MPU6050</a></li>
-   <li>4 sensores de temperatura por infra vermelho <a href="https://forum.arduino.cc/index.php?topic=577921.0">MLX90614</a></li>
-   <li>4 sensores de efeito hall <a href="https://www.instructables.com/Arduino-Magnetic-FIELD-Detector-Using-the-KY-003-o/">KY003</a></li>
-   <li>4 potênciometros para verificação de curso de suspensão</li>
-   <li>1 sensor de pressão de linha de freio</li>
-  </ol>
-  <li>1 <a href="https://randomnerdtutorials.com/guide-for-oled-display-with-arduino/">tela OLED de 0,96"</a> que comunica por I2C;</li>
-  <li>3 botões ligados com um pullup comum;</li>
-  <li>1 <a href="https://circuitdigest.com/simple-raspberry-pi-projects-for-beginners">Raspberry</a>;</li>
-  <li>1 <a href="https://www.youtube.com/watch?v=Fj3wq98pd20">tela touch 3,5"</a>, encaixa por cima do Raspberry, habilitada via raspibian;</li>
-  <li>1 multiplexador 4052;</li>
-  <li>1 adaptador <a href="https://www.electronicshub.org/arduino-mcp2515-can-bus-tutorial/">MCP2515</a>.</li>
- </ol>
-</p>  
+O hardware do projeto atualmente é constituido de:
+
+1. 1 [Arduino Mega](https://www.arduino.cc/en/Guide/ArduinoMega2560)
+2. Alguns sensores, sendo eles:
+
+   i. 3 acelerômetros giroscópios [MPU6050](https://www.letscontrolit.com/wiki/index.php/MPU6050)
+
+   ii. 4 sensores de temperatura por infra vermelho [MLX90614](https://forum.arduino.cc/index.php?topic=577921.0)
+
+   iii. 4 sensores de efeito hall [KY003](https://www.instructables.com/Arduino-Magnetic-FIELD-Detector-Using-the-KY-003-o/)
+
+   iv. 4 potênciometros para verificação de curso de suspensão
+   
+    v. 1 sensor de pressão de linha de freio
+
+3. 1 [tela OLED de 0,96](https://randomnerdtutorials.com/guide-for-oled-display-with-arduino/) que comunica por I2C
+4. 3 botões ligados com um pullup comum
+5. 1 [Raspberry](https://circuitdigest.com/simple-raspberry-pi-projects-for-beginners)
+6. 1 [tela touch 3,5](https://www.youtube.com/watch?v=Fj3wq98pd20), encaixa por cima do Raspberry, habilitada via raspibian
+7. 1 multiplexador 4052
+8. 1 adaptador [MCP2515](https://www.electronicshub.org/arduino-mcp2515-can-bus-tutorial/).
+ 
   
 <p>Está sendo implementado a adição de:
   <li>4 <a href="https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/">ATtiny85</a>. </li>
