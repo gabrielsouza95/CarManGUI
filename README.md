@@ -1,20 +1,12 @@
-<body>
-<H1> # CarManGUI </H1>
+# CarManGUI
 
-<H3> O Projeto </H3>
+### O Projeto
  
-<p>Projeto está sendo desenvolvido em parceria com a FEB Racing(<a href="https://www.facebook.com/equipefebracing">face</a>)(<a href="https://www.instagram.com/febracing/?hl=pt">insta</a>), equipe de fórmula SAE da Unesp, para a construção de um equipamento para o carro da equipe.</p>
+Projeto está sendo desenvolvido em parceria com a FEB Racing([facebook](https://www.facebook.com/equipefebracing))([instagram](https://www.instagram.com/febracing/?hl=pt)), equipe de fórmula SAE da Unesp, para a construção de um equipamento para o carro da equipe.
 
 <span>
     <img style="max-width:50px; max-height:50px;" 
     src="https://github.com/gabrielsouza95/CarManGUI/blob/master/primeiro_teste_no_carro.jpeg" 
-    alt="Primeiro teste no carro">
-</span>
-
-----------------------
-<span>
-    <img style="max-width:50px; max-height:50px;" 
-    src= ![primeiro_teste_no_carro.jpeg](static%2Fprimeiro_teste_no_carro.jpeg)
     alt="Primeiro teste no carro">
 </span>
 
