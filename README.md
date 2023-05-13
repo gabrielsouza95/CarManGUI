@@ -62,20 +62,20 @@ Também está sendo utilizado no projeto Python, R, C++(Arduino, Processing, ten
 ### O que está acontecendo
 
 
-- Atualmente o projeto está com uma janela desenvolvida em C# para fazer a interface com o usurário através da tela de 3,5" do Raspberry, fazendo a inicialização da comunicação e o término da mesma com o arduino; controla quando começa a gravar os dados, dando feedback que está gravando e sendo possível parar a gravação em qualquer momento*; mostra os dados dos sensores em telas separadas para uma melhor visualização.
+_-_ Atualmente o projeto está com uma janela desenvolvida em C# para fazer a interface com o usurário através da tela de 3,5" do Raspberry, fazendo a inicialização da comunicação e o término da mesma com o arduino; controla quando começa a gravar os dados, dando feedback que está gravando e sendo possível parar a gravação em qualquer momento*; mostra os dados dos sensores em telas separadas para uma melhor visualização.
 
 
 A mesma abre no Raspberry mas por algum motivo, depois de mudar o método de utilizar uma thread manualmente, para utilizar eventos da porta serial do objeto serial do C#, ele não comunicou mais com o Arduino. Pelo que já descobri, o software de compatibilidade Mono que estou utilizando no Raspberry não tem implementado a compatibilidade dos eventos de porta serial.
 
 
-- Como não funcionou no Raspberry corretamente a janela implementada em C#, estou utilizando uma tela OLED de 0,96" para mostrar ao piloto as informações desejadas, com 2 botões para a seleção do menu, um vai "para frente" nas opções e o outro volta. O terceiro botão é para controlar quando o Arduino deve começar a gravar ou não. Estaria utilizando um shield de cartão SD mas o mesmo não funcionou também
+_-_ Como não funcionou no Raspberry corretamente a janela implementada em C#, estou utilizando uma tela OLED de 0,96" para mostrar ao piloto as informações desejadas, com 2 botões para a seleção do menu, um vai "para frente" nas opções e o outro volta. O terceiro botão é para controlar quando o Arduino deve começar a gravar ou não. Estaria utilizando um shield de cartão SD mas o mesmo não funcionou também
 
 
-- Foi desenvolvida uma janela em Python para ser possível levar o equipamento funcionando para a competição, dado que o módulo SD não funcionou ligado diretamente no arduino. Com essa janela, já foi testada e o arduino consegue fazer conexão com ela e gerar o arquivo de log. Por conta da pandemia, ainda não foi possível testar o equipamento no carro da equipe mas testarei em meu Corsa e será postado aqui o resultado. 
+_-_ Foi desenvolvida uma janela em Python para ser possível levar o equipamento funcionando para a competição, dado que o módulo SD não funcionou ligado diretamente no arduino. Com essa janela, já foi testada e o arduino consegue fazer conexão com ela e gerar o arquivo de log. Por conta da pandemia, ainda não foi possível testar o equipamento no carro da equipe mas testarei em meu Corsa e será postado aqui o resultado. 
 Inclusive do teste antes e depois da instalação da barra estabilizadora, que na época, os carros populares vinham tão pelados que sequer esse item de segurança ou o protetor de cárter vinham no carro para baratea-lo.
 
 
- - Foi feita uma base para facilitar os testes de bancada que estão sendo feitos atualmente, como pode ser visto nas duas próximas imagens:
+_-_ Foi feita uma base para facilitar os testes de bancada que estão sendo feitos atualmente, como pode ser visto nas duas próximas imagens:
 
 
 ![Vista frontal da base de testes](static%2Fbase_teste_v1.1_view2.jpeg)
@@ -83,18 +83,18 @@ Inclusive do teste antes e depois da instalação da barra estabilizadora, que n
 ![Vista superior da base de testes](static%2Fbase_teste_v1.1_view6.jpeg)
 
 
- - Foi feito o aviso de bandeiras que poderá ser dado dos boxes para informar o piloto de alguma condição que precisa de atenção. Com essa implementação também podem ser feitos outros avisos que sejam necessários serem passados para o piloto. Na imagem também é possível ver como era mostrada as informações do acelerômetro:
+_-_ Foi feito o aviso de bandeiras que poderá ser dado dos boxes para informar o piloto de alguma condição que precisa de atenção. Com essa implementação também podem ser feitos outros avisos que sejam necessários serem passados para o piloto. Na imagem também é possível ver como era mostrada as informações do acelerômetro:
 
 
 ![Teste do alerta de bandeiras](static%2Fteste_alerta_bandeiras.gif)
 
 
- - Foi melhorado a interface dos dados do acelerômetro para que seja mais compreensível para o piloto. Foi escolhido os eixos de aceleração laterais e pra frente e para trás na implementação de como o ponto deve se deslocar. Me inspirei no display de força G do Gran Turismo para fazê-lo. Na imagem a seguir é possível ver a primeira versão:
+_-_ Foi melhorado a interface dos dados do acelerômetro para que seja mais compreensível para o piloto. Foi escolhido os eixos de aceleração laterais e pra frente e para trás na implementação de como o ponto deve se deslocar. Me inspirei no display de força G do Gran Turismo para fazê-lo. Na imagem a seguir é possível ver a primeira versão:
 
 ![Primeira versão da UI do acelerômetro](static%2Fteste_UI_acelerometro_1.0.gif)
 
 
- - Nessa próxima imagem é possível ver a segunda versão da interface:
+_-_ Nessa próxima imagem é possível ver a segunda versão da interface:
 
  
 ![Segunda versão da UI do acelerômetro](static%2Fteste_UI_acelerometro_1.1.gif)
