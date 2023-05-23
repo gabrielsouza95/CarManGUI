@@ -1,113 +1,107 @@
 # CarManGUI
 
-### O Projeto
+### The Project
  
-Projeto está sendo desenvolvido em parceria com a FEB Racing([facebook](https://www.facebook.com/equipefebracing))([instagram](https://www.instagram.com/febracing/?hl=pt)), equipe de fórmula SAE da Unesp, para a construção de um equipamento para o carro da equipe.
+The project is being developed in partnership with FEB Racing([facebook](https://www.facebook.com/equipefebracing))([instagram](https://www.instagram.com/febracing/?hl=pt)), the formula SAE team from Unesp, for the construction of a device for the team's car.
 
 
-![Primeiro teste no carro](static%2Fprimeiro_teste_no_carro.jpeg)
+![First test on the car](static%2Fprimeiro_teste_no_carro.jpeg)
 
 
-Em resumo, ele consiste de:
+In summary, it consists of:
 
-1. sensores colocados no carro;
-2. gravação dos dados coletados dos sensores em arquivo para posterior análise;
-3. mostrar os dados para o piloto através de uma interface com o usuário e, futuramente, para a equipe nos boxes com possibilidade de comunicação simples entre a equipe e o piloto:
+1. Sensors placed on the car.
+2. Recording of data collected from the sensors into a file for later analysis.
+3. Displaying the data to the driver through a user interface and, in the future, to the team in the pit with the possibility of simple communication between the team and the driver:
    
-    i. Por exemplo, mostrar para o piloto que foi dada bandeira de cor x.
-4. um plotter para visualização dos dados e análise.
+    i. For example, showing the driver that a flag of color x has been given.
+4. A plotter for data visualization and analysis.
 
 
-### O Hardware
+### The Hardware
    
-O hardware do projeto atualmente é constituido de:
+The current hardware of the project consists of:
 
 1. 1 [Arduino Mega](https://www.arduino.cc/en/Guide/ArduinoMega2560)
-2. Alguns sensores, sendo eles:
+2. Several sensors, including:
 
-   i. 3 acelerômetros giroscópios [MPU6050](https://www.letscontrolit.com/wiki/index.php/MPU6050)
+   i. 3 [MPU6050](https://www.letscontrolit.com/wiki/index.php/MPU6050) accelerometers and gyroscopes
 
-   ii. 4 sensores de temperatura por infra vermelho [MLX90614](https://forum.arduino.cc/index.php?topic=577921.0)
+   ii. 4 [MLX90614](https://forum.arduino.cc/index.php?topic=577921.0) infrared temperature sensors
 
-   iii. 4 sensores de efeito hall [KY003](https://www.instructables.com/Arduino-Magnetic-FIELD-Detector-Using-the-KY-003-o/)
+   iii. 4 [KY003](https://www.instructables.com/Arduino-Magnetic-FIELD-Detector-Using-the-KY-003-o/) hall effect sensors
 
-   iv. 4 potênciometros para verificação de curso de suspensão
+   iv. 4 potentiometers for suspension travel verification
    
-    v. 1 sensor de pressão de linha de freio
+    v. 1 brake line pressure sensor
 
-3. 1 [tela OLED de 0,96](https://randomnerdtutorials.com/guide-for-oled-display-with-arduino/) que comunica por I2C
-4. 3 botões ligados com um pullup comum
-5. 1 [Raspberry](https://circuitdigest.com/simple-raspberry-pi-projects-for-beginners)
-6. 1 [tela touch 3,5](https://www.youtube.com/watch?v=Fj3wq98pd20), encaixa por cima do Raspberry, habilitada via raspibian
-7. 1 multiplexador 4052
-8. 1 adaptador [MCP2515](https://www.electronicshub.org/arduino-mcp2515-can-bus-tutorial/).
+3. 1 [0.96" OLED display](https://randomnerdtutorials.com/guide-for-oled-display-with-arduino/) that communicates via I2C
+4. 3 buttons connected with a common pull-up
+5. 1 [Raspberry Pi](https://circuitdigest.com/simple-raspberry-pi-projects-for-beginners)
+6. 1 [3.5" touch displa](https://www.youtube.com/watch?v=Fj3wq98pd20), mounted on top of the Raspberry Pi, enabled via Raspbian
+7. 1 4052 multiplexer
+8. 1 [MCP2515](https://www.electronicshub.org/arduino-mcp2515-can-bus-tutorial/) adapter
  
   
-Está sendo implementado a adição de:
-  - 4 [ATtiny85](https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/).
+In addition, the following are being implemented:
+  - 4 [ATtiny85](https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/) microcontrollers.
 
 
-### O Software
+### The Software
 
-Na implementação do projeto está sendo utilizado C# para a interface utilizando um projeto .NET Framework 4 e o [Mono](https://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives) e no futuro será utilizado o .NET Core 3 que tem compatibilidade com o Raspibian.
-
+For the project implementation, C# is being used for the user interface, using a .NET Framework 4 project and [Mono].(https://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives)In the future, the Python will be used, which is compatible with Raspbian.
 
 ![teste_interface_csharpv2.x_animado](static%2Fteste_interface_csharpv2.x_animado.gif)
 
-__GIF mostra o teste da janela em C#, com um gráfico 2D implementado sendo printado os valores de 2 dos 3 eixos do acelerômetro no gráfico de pontos enquanto balanço o sensor.__
+__The GIF shows a test of the C# window, with a 2D graph implemented, printing the values of 2 out of 3 accelerometer axes as data points while I sway the sensor.__
 
-Também está sendo utilizado no projeto Python, R, C++(Arduino, Processing, tentativa de script para comunicação serial).
-
-
-### O que está acontecendo
+The project also utilizes Python, R, and C++ (Arduino, Processing, and an attempt to script for serial communication).
 
 
-_-_ Atualmente o projeto está com uma janela desenvolvida em C# para fazer a interface com o usurário através da tela de 3,5" do Raspberry, fazendo a inicialização da comunicação e o término da mesma com o arduino; controla quando começa a gravar os dados, dando feedback que está gravando e sendo possível parar a gravação em qualquer momento*; mostra os dados dos sensores em telas separadas para uma melhor visualização.
+### Current Status
 
 
-A mesma abre no Raspberry mas por algum motivo, depois de mudar o método de utilizar uma thread manualmente, para utilizar eventos da porta serial do objeto serial do C#, ele não comunicou mais com o Arduino. Pelo que já descobri, o software de compatibilidade Mono que estou utilizando no Raspberry não tem implementado a compatibilidade dos eventos de porta serial.
+_-_ The project currently has a C# window developed to interface with the user through the Raspberry Pi's 3.5" display. It handles the initialization and termination of communication with the Arduino, controls when data recording starts, provides feedback when recording is in progress, and allows the recording to be stopped at any time*. It also displays sensor data on separate screens for better visualization.
+
+_-_ The C# window did not function correctly on the Raspberry Pi after changing from manually using a thread to utilizing serial port events in C#. From my findings, the compatibility software Mono that I am using on the Raspberry Pi does not have the serial port event compatibility implemented.
+
+_-_ Since the C# window did not work correctly on the Raspberry Pi, a 0.96" OLED display is being used to show desired information to the driver. It includes 2 buttons for menu selection, one for moving forward in the options and another for going back. The third button controls when the Arduino should start or stop recording. A SD card shield was supposed to be used, but it also did not work.
+
+_-_ A Python window was developed to enable taking the functioning equipment to the competition since the SD module did not work directly connected to the Arduino. With this window, the Arduino can establish a connection and generate the log file. Due to the pandemic, it has not been possible to test the equipment on the team's car, but I will test it on my Corsa and post the results here. I will also test before and after installing the sway bar, as at that time, entry-level cars came so barebones that they didn't even come with safety features like the sway bar or the engine protection shield to reduce costs.
+
+_-_ A test bench was created to facilitate the current bench tests, as seen in the following two images:
 
 
-_-_ Como não funcionou no Raspberry corretamente a janela implementada em C#, estou utilizando uma tela OLED de 0,96" para mostrar ao piloto as informações desejadas, com 2 botões para a seleção do menu, um vai "para frente" nas opções e o outro volta. O terceiro botão é para controlar quando o Arduino deve começar a gravar ou não. Estaria utilizando um shield de cartão SD mas o mesmo não funcionou também
+![Front view of the test bench](static%2Fbase_teste_v1.1_view2.jpeg)
+
+![Top view of the test bench](static%2Fbase_teste_v1.1_view6.jpeg)
 
 
-_-_ Foi desenvolvida uma janela em Python para ser possível levar o equipamento funcionando para a competição, dado que o módulo SD não funcionou ligado diretamente no arduino. Com essa janela, já foi testada e o arduino consegue fazer conexão com ela e gerar o arquivo de log. Por conta da pandemia, ainda não foi possível testar o equipamento no carro da equipe mas testarei em meu Corsa e será postado aqui o resultado. 
-Inclusive do teste antes e depois da instalação da barra estabilizadora, que na época, os carros populares vinham tão pelados que sequer esse item de segurança ou o protetor de cárter vinham no carro para baratea-lo.
+_-_ A flag alert feature was implemented to inform the driver of any conditions that require attention. This implementation allows for other necessary alerts to be conveyed to the driver. The image below shows how the accelerometer information was displayed:
 
 
-_-_ Foi feita uma base para facilitar os testes de bancada que estão sendo feitos atualmente, como pode ser visto nas duas próximas imagens:
+![Flag alert test](static%2Fteste_alerta_bandeiras.gif)
 
 
-![Vista frontal da base de testes](static%2Fbase_teste_v1.1_view2.jpeg)
+_-_ The interface for accelerometer data has been improved to be more comprehensible for the driver. The lateral and forward-backward acceleration axes were chosen for implementation in how the point should move. I took inspiration from the G-force display in Gran Turismo. The following image shows the first version:
 
-![Vista superior da base de testes](static%2Fbase_teste_v1.1_view6.jpeg)
-
-
-_-_ Foi feito o aviso de bandeiras que poderá ser dado dos boxes para informar o piloto de alguma condição que precisa de atenção. Com essa implementação também podem ser feitos outros avisos que sejam necessários serem passados para o piloto. Na imagem também é possível ver como era mostrada as informações do acelerômetro:
+![First version of the accelerometer UI](static%2Fteste_UI_acelerometro_1.0.gif)
 
 
-![Teste do alerta de bandeiras](static%2Fteste_alerta_bandeiras.gif)
-
-
-_-_ Foi melhorado a interface dos dados do acelerômetro para que seja mais compreensível para o piloto. Foi escolhido os eixos de aceleração laterais e pra frente e para trás na implementação de como o ponto deve se deslocar. Me inspirei no display de força G do Gran Turismo para fazê-lo. Na imagem a seguir é possível ver a primeira versão:
-
-![Primeira versão da UI do acelerômetro](static%2Fteste_UI_acelerometro_1.0.gif)
-
-
-_-_ Nessa próxima imagem é possível ver a segunda versão da interface:
+_-_ In the next image, the second version of the interface can be seen:
 
  
-![Segunda versão da UI do acelerômetro](static%2Fteste_UI_acelerometro_1.1.gif)
+![Second version of the accelerometer UI](static%2Fteste_UI_acelerometro_1.1.gif)
 
 
-### Para implementar
+### Planned Implementations
 
-_-_ Desejo utilizar JonhyFive juntamente com Node para comunicar entre raspberry e arduino, além de estar estudando a possibilidade de fazer uma interface com React e já deixar pronto para ser utilizado via internet o acesso ao carro pelo computador nos boxes também com uma página web em React ou até mesmo um app no celular com React Native.
+_-_ I plan to use Johnny-Five with Node.js to communicate between the Raspberry Pi and Arduino. I am also studying the possibility of creating an interface with React and preparing it for accessing the car via the internet on a computer in the pit using a React web page or even a mobile app with React Native.
 
-_-_ Como mencionado na parte de software, provavelmente antes da implementação com JS([JonhyFive](http://johnny-five.io/),[Node](https://www.instructables.com/NodeJs-and-Arduino/),[React](https://awot.net/en/guide/tutorial.html),ReactNative) será implementada uma versão utilizando o .NET Core 3.0 que é garantido a compatibilidade com o Raspibian, apesar de não ser a ferramenta mais nova.
+_-_ As mentioned in the software section, before implementing with JS([JonhyFive](http://johnny-five.io/),[Node](https://www.instructables.com/NodeJs-and-Arduino/),[React](https://awot.net/en/guide/tutorial.html),ReactNative), I will likely implement a version using Python, which guarantees compatibility with Raspbian.
 
-_-_ Os ATtiny85 que serão implementados, vão ser utilizados como sensores de velocidade, ficando entre o Arduino e o sensor hall, para fazer a correta contagem de pulsos por intervalo de tempo. Como o Aruino está hoje, caso tentássemos utilizar os 4 sensores hall diretamente neles, por conta de como é calculado a velocidade da roda por amostragem de pulsos por tempo, o Arduino ficaria com uma resposta muito ruim ([veja aqui](https://forum.arduino.cc/index.php?topic=519300.0)), por utilizar rotinas de interrupção do processador para tal tarefa. Então a ideia é que o ATtiny85 fique ligado como um slave no barramento I2C ([veja aqui](https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/)) e quando o Arduino solicitar, ele já envie a velocidade atual da roda, deixando o cálculo com interrupções diretamente no ATtyny85, que tem suporte para tal.
+_-_ The ATtiny85 microcontrollers will be used as speed sensors, placed between the Arduino and the hall effect sensor, to correctly count pulses per time interval. If we were to directly use the 4 hall effect sensors on the Arduino, [the response would be poor](https://forum.arduino.cc/index.php?topic=519300.0) due to how wheel speed is calculated by sampling pulses per time. This is because it utilizes interrupt routines of the processor for such tasks. The idea is to have the ATtiny85 connected as a [slave on the I2C bus](https://thewanderingengineer.com/2014/02/17/attiny-i2c-slave/), and when the Arduino requests it, the ATtiny85 will send the current wheel speed, performing the interrupt calculations directly on the ATtiny85, which supports this. 
 
-_-_ Estou estudando a possibilidade de migrar o projeto direto para um [ESP8266](https://github.com/esp8266/Arduino) para utilizar não somente a função WiFi, em conjunto com o Raspberry, mas também para melhorar a velocidade do hardware responsável pela captura de dados dos sensores, assim tendo uma melhor amostragem dos dados dos sensores, também sendo possível adicionar mais captura de dados, como o adaptador CAN e mais sensores.
+_-_ I am considering migrating the project directly to an [ESP8266](https://github.com/esp8266/Arduino) to not only utilize WiFi functionality in conjunction with the Raspberry Pi but also to improve the speed of the hardware responsible for capturing sensor data. This would allow for better sampling of sensor data and the possibility of adding more data capture, such as a CAN adapter and additional sensors.
 
-_-_ Quero incluir no equipamento a leitura do barramento CAN, que no caso estou tentando fazer funcionar com o adaptador [MCP2515](https://www.electronicshub.org/arduino-mcp2515-can-bus-tutorial/) mas que, até o momento, não consegui fazer a inicialização do adaptador para processguir com a leitura dos dados da injeção eletrônica para ser associada ao log de dados dos sensores adicionados pelo projeto.
+_-_ I want to include reading the CAN bus in the equipment. I am currently trying to make it work with the [MCP2515](https://www.electronicshub.org/arduino-mcp2515-can-bus-tutorial/) adapter, but so far, I have been unable to initialize the adapter to proceed with reading the data from the engine control unit (ECU) to associate it with the sensor data log added by the project.
